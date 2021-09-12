@@ -1,0 +1,2 @@
+insert into honbab.store (id, name, lat, lng, tel, post, addr1, addr2, category, rate, rate_cnt, signature_menu)
+values  (1, '우미노미', 37.5303057771, 126.8992801172, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1, 0, 0, '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동');
