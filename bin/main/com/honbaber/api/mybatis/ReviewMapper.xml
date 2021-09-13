@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.honbaber.api.mapper.ReviewMapper">
+	<select id="getReview" parameterType="integer" resultType="hashmap"> 
+		select id, 
+		       (sense_rate + time_rate + taste_rate) / 3 as total_rate,
+			   sense_rate, 
+			   time_rate, 
+			   taste_rate, 
+			   review, 
+			   created_at
+		from review
+		where id = #{id}  
+	</select>
+	<insert id="postReview" parameterType="hashmap">
+		insert into review(
+			store_id, reviewer, sense_rate, time_rate, taste_rate, 
+			review, created_at, updated_at
+		) values (
+			#{store_id}, concat('혼밥러#',(select count(id)+1 from review)), #{sense_rate}, #{time_rate}, #{taste_rate},
+			#{review}, now(), now()
+		)
+	</insert>
+</mapper>

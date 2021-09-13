@@ -18,8 +18,6 @@ create table store
     addr1          varchar(255)    not null comment '기본주소',
     addr2          varchar(255)    not null comment '상세주소',
     category       int             null comment '음식점종류',
-    rate           tinyint         null comment '평점',
-    rate_cnt       int             null comment '총 평가수',
     signature_menu varchar(255)    null comment '대표메뉴',
     created_at     datetime        null,
     updated_at     datetime        null,
@@ -28,7 +26,8 @@ create table store
 );
 comment on table STORE is '가게 기본 정보';
 
-INSERT INTO store (name, lat, lng, tel, post, addr1, addr2, category, signature_menu, created_at, updated_at) VALUES ('우미노미', 37.5303057771, 126.8992801172, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1, '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', now(), now());
+INSERT INTO store (name, lat, lng, tel, post, addr1, addr2, category, signature_menu, created_at, updated_at) 
+VALUES ('우미노미', 37.5303057771, 126.8992801172, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1, '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', now(), now());
 
 create table STORE_DETAIL
 (
@@ -37,14 +36,6 @@ create table STORE_DETAIL
     open_day       varchar(50),
     open_at        varchar(50),
     off_day        varchar(50),
-    total_rate     tinyint,
-    total_rate_cnt int,
-    sense_rate     tinyint,
-    sense_rate_cnt int,
-    time_rate      tinyint,
-    time_rate_cnt  int,
-    taste_rate     tinyint,
-    taste_rate_cnt int,
     website        varchar(255),
     created_at     datetime null,
     updated_at     datetime null,
@@ -57,6 +48,42 @@ comment on table STORE_DETAIL is '가게 상세 정보';
 create unique index STORE_DETAIL_STORE_ID_UINDEX
     on STORE_DETAIL (STORE_ID);
 
-insert into store_detail(store_id, open_day, open_at, off_day, total_rate, total_rate_cnt, sense_rate, sense_rate_cnt, time_rate, time_rate_cnt, taste_rate, taste_rate_cnt, website, created_at, updated_at) 
-values(1, '매일', '09:00~18:00', '매주 목요일', 2, 1, 1, 1, 2, 1, 3, 1, 'http://www.store.com', now(), now());
+insert into store_detail(store_id, open_day, open_at, off_day, website, created_at, updated_at) 
+values(1, '매일', '09:00~18:00', '매주 목요일', 'http://www.store.com', now(), now());
 
+create table REPORT
+(
+    ID              INT auto_increment,
+    report_content  varchar(4000),
+    served_content  varchar(4000),
+    created_at      datetime null,
+    constraint REPORT_PK
+        primary key (ID)
+);
+
+comment on table STORE_DETAIL is '개선 사항 혹은 틀린정보 신고';
+
+create table review
+(
+	id int auto_increment,
+	store_id int not null,
+  reviewer varchar(100),
+  sense_rate     tinyint,
+  time_rate      tinyint,
+  taste_rate     tinyint,
+  review varchar(4000),
+	created_at datetime,
+	updated_at datetime,
+	constraint REVIEW_PK
+		primary key (id)
+);
+
+comment on table review is '사용자 리뷰 테이블';
+
+create unique index REVIEW_ID_UINDEX
+	on review (id);
+
+insert into review(store_id, reviewer, sense_rate, time_rate, taste_rate, review, created_at, updated_at) values(1, '혼밥러#1', 3, 4, 5, 'A', now(), now());
+insert into review(store_id, reviewer, sense_rate, time_rate, taste_rate, review, created_at, updated_at) values(1, '혼밥러#2', 1, 2, 3, 'B', now(), now());
+insert into review(store_id, reviewer, sense_rate, time_rate, taste_rate, review, created_at, updated_at) values(1, '혼밥러#3', 4, 3, 5, 'C', now(), now());
+insert into review(store_id, reviewer, sense_rate, time_rate, taste_rate, review, created_at, updated_at) values(2, '혼밥러#4', 4, 3, 5, 'D', now(), now());
