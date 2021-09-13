@@ -5,6 +5,6 @@
 서비스 동작시 database/init.sql 파일로 시딩 합니다.
 
 ### API 요청 리스트
-Reqeust URL | Description | Complete 
+Reqeust URL | Description | Complete | return
 ----|----|----
-/api/v1/getStore | 주변 가게 검색 | ok
+/api/v1/getStore | 주변 가게 검색 | ok | 가게명, 주소, 전화번호, 총평점
