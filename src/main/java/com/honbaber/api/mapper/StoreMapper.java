@@ -6,10 +6,9 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.honbaber.api.model.StoreModel;
-
 @Repository
 @Mapper
 public interface StoreMapper {
-	List<StoreModel> getStore(Map<String, Object> params);
+	List<Map<String, Object>> getStore(Map<String, Object> params);
+	List<Map<String, Object>> getStoreDetail(Integer id);
 }

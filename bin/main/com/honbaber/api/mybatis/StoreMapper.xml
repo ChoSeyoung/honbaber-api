@@ -4,24 +4,46 @@
 <mapper namespace="com.honbaber.api.mapper.StoreMapper">
 	<select id="getStore" parameterType="hashmap" resultType="hashmap"> 
 		select name,
-		       rate,
-		       rate_cnt,
 		       tel,
+		       post,
 		       addr1,
-		       addr2
-		from store
+		       addr2,
+		       total_rate,
+		       total_rate_cnt
+		from store join store_detail on store.id = store_detail.store_id 
 		<![CDATA[
 		where (
 			6371 * acos (
 			cos ( radians(#{lat}) )
-			* cos( radians( lat ) )
-			* cos( radians( lng ) - radians(#{lng}) )
+			* cos( radians( store.lat ) )
+			* cos( radians( store.lng ) - radians(#{lng}) )
 			+ sin ( radians(#{lat}) )
-			* sin( radians( lat ) )
+			* sin( radians( store.lat ) )
 		)) < #{radius} 
-		and rate >= #{rate} 
-		and signature_menu like '%'||#{keyword}||'%'
+		and store_detail.total_rate >= #{rate} 
+		and store.signature_menu like '%'||#{keyword}||'%'
 		]]> 
+	</select>
+	<select id="getStoreDetail" parameterType="integer" resultType="hashmap"> 
+		select name,
+		       tel,
+		       post,
+		       addr1,
+		       addr2,
+		       total_rate,
+		       total_rate_cnt,
+		       sense_rate,
+		       sense_rate_cnt,
+		       time_rate,
+		       time_rate_cnt,
+		       taste_rate,
+		       taste_rate_cnt,
+		       website,
+		       open_day,
+		       open_at,
+		       off_day
+		from store join store_detail on store.id = store_detail.store_id
+		where store.id = #{id}  
 	</select>
 </mapper>
 
