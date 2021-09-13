@@ -7,4 +7,4 @@
 ### API 요청 리스트
 Reqeust URL | Description | Complete 
 ----|----|----
-/api/getStore | 주변 가게 검색 | ok
+/api/v1/getStore | 주변 가게 검색 | ok
