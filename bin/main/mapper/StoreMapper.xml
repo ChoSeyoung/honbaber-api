@@ -30,6 +30,7 @@
 			* sin( radians( store.lat ) )
 		)) < #{radius}
 		and store.signature_menu like '%'||#{keyword}||'%'
+		and store.is_closed_store = 0
 		having total_rate >= #{rate}
 		]]>
 	</select>
@@ -60,4 +61,7 @@
 			join review on store.id = review.store_id
 		where store.id = #{id}
 	</select>
+	<update id="closeStore" parameterType="integer">
+		update store set is_closed_store = 1 where id = #{id}
+	</update>
 </mapper>

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +27,9 @@ public class StoreController {
 	@GetMapping("/store/detail/{id}")
 	public List<Map<String, Object>> getStoreDetail(@PathVariable("id") Integer id) {
 		return storeService.getStoreDetail(id);
+	}
+	@PutMapping("/store/close/{id}")
+	public void closeStore(@PathVariable("id") Integer id) {
+		storeService.closeStore(id);
 	}
 }

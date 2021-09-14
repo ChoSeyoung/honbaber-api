@@ -19,4 +19,7 @@ public class StoreService {
 	public List<Map<String, Object>> getStoreDetail(Integer id){
 		return mapper.getStoreDetail(id);
 	}
+	public Integer closeStore(Integer id) {
+		return mapper.closeStore(id);
+	}
 }

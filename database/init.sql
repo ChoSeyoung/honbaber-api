@@ -30,18 +30,21 @@ create table store
     addr2          varchar(255)    not null comment '상세주소',
     category       int             null comment '음식점종류',
     signature_menu varchar(255)    null comment '대표메뉴',
+    is_closed_store tinyint,
     created_at     datetime        null,
     updated_at     datetime        null,
     constraint store_category_store_Id_fk
-        foreign key (category) references category_store (Id)
+        foreign key (category) references category_store (Id),
+    constraint STORE_DETAIL_IS_CLOSED_STORE_CHECK
+        check (is_closed_store >= 0)
 );
 comment on table STORE is '가게 기본 정보';
 
-INSERT INTO store (name, img, lat, lng, tel, post, addr1, addr2, category, signature_menu, created_at, updated_at)
+INSERT INTO store (name, img, lat, lng, tel, post, addr1, addr2, category, signature_menu, is_closed_store, created_at, updated_at)
 VALUES ('우미노미',
         'https://lh3.googleusercontent.com/IY46sYeT68JA7Zrq7En8FgQdwh4cQ5buQgWc4wDIZdSvIXW2uHea6d1JdaUPJs_JadHe',
         37.5303057771, 126.8992801172, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1,
-        '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', now(), now());
+        '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', 0, now(), now());
 
 create table STORE_DETAIL
 (
@@ -58,19 +61,16 @@ create table STORE_DETAIL
     is_self_payment tinyint,
     created_at datetime null,
     updated_at datetime null,
-    is_closed_store tinyint,
     constraint STORE_DETAIL_PK
-        primary key (ID)
+        primary key (ID),
     constraint STORE_DETAIL_PERSONAL_TABLE_CNT_CHECK
-        check (personal_table_cnt >= 0)
+        check (personal_table_cnt >= 0),
     constraint STORE_DETAIL_IS_SELF_SIDE_DISH_CHECK
-        check (is_self_side_dish >= 0)
+        check (is_self_side_dish >= 0),
     constraint STORE_DETAIL_IS_SELF_WATER_CHECK
-        check (is_self_water >= 0)
+        check (is_self_water >= 0),
     constraint STORE_DETAIL_IS_SELF_PAYMENT_CHECK
         check (is_self_payment >= 0)
-    constraint STORE_DETAIL_IS_CLOSED_STORE_CHECK
-        check (is_closed_store >= 0)
 );
 
 comment on table STORE_DETAIL is '가게 상세 정보';
@@ -78,10 +78,10 @@ comment on table STORE_DETAIL is '가게 상세 정보';
 create unique index STORE_DETAIL_STORE_ID_UINDEX
     on STORE_DETAIL (STORE_ID);
 
-insert into store_detail(store_id, img, open_day, open_at, off_day, website, personal_table_cnt, is_self_side_dish, is_self_water, is_self_payment, is_closed_store, created_at, updated_at)
+insert into store_detail(store_id, img, open_day, open_at, off_day, website, personal_table_cnt, is_self_side_dish, is_self_water, is_self_payment, created_at, updated_at)
 values (1,
         'https://mblogthumb-phinf.pstatic.net/MjAxNzAzMDZfMTkw/MDAxNDg4NzgwNTE2OTc0.mZsCNdH3XrGZBEyHwFUiKdAjjZDs8bNozLkjcFDcDAAg.Sgm40zdMHNGxhWI7jX6P-KhBFX7T9WSrhjhUJSDkm_cg.JPEG.ldhbjh/%EC%B0%BD%EC%9B%90_%EC%84%A0%EC%A7%80%EA%B5%AD%EB%B0%A5_%ED%95%A0%EB%A8%B8%EB%8B%88%EA%B5%AD%EB%B0%A5%EC%A7%91__%283%29.jpg?type=w800',
-        '매일', '09:00~18:00', '매주 목요일', 'http://www.store.com', 5, 0, 0, 0, 0, now(), now());
+        '매일', '09:00~18:00', '매주 목요일', 'http://www.store.com', 5, 0, 0, 0, now(), now());
 
 create table REPORT
 (

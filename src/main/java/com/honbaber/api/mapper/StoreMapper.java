@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface StoreMapper {
 	List<Map<String, Object>> getStore(Map<String, Object> params);
 	List<Map<String, Object>> getStoreDetail(Integer id);
+	Integer closeStore(Integer id);
 }
