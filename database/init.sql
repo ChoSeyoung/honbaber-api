@@ -1,38 +1,49 @@
 create table category_store
 (
     Id       int         not null primary key auto_increment,
-    category varchar(10) null
+    category varchar(10) null comment '업종'
 );
 comment on table category_store is '가게 업종 카테고리 정보';
 
-INSERT INTO category_store (category) VALUES ('일식');
-INSERT INTO category_store (category) VALUES ('한식');
-INSERT INTO category_store (category) VALUES ('중식');
-INSERT INTO category_store (category) VALUES ('양식');
-INSERT INTO category_store (category) VALUES ('퓨전');
-INSERT INTO category_store (category) VALUES ('디저트');
-INSERT INTO category_store (category) VALUES ('베트남');
-INSERT INTO category_store (category) VALUES ('태국');
-INSERT INTO category_store (category) VALUES ('인도');
-INSERT INTO category_store (category) VALUES ('프랑스');
-INSERT INTO category_store (category) VALUES ('이탈리아');
+INSERT INTO category_store (category)
+VALUES ('일식');
+INSERT INTO category_store (category)
+VALUES ('한식');
+INSERT INTO category_store (category)
+VALUES ('중식');
+INSERT INTO category_store (category)
+VALUES ('양식');
+INSERT INTO category_store (category)
+VALUES ('퓨전');
+INSERT INTO category_store (category)
+VALUES ('디저트');
+INSERT INTO category_store (category)
+VALUES ('베트남');
+INSERT INTO category_store (category)
+VALUES ('태국');
+INSERT INTO category_store (category)
+VALUES ('인도');
+INSERT INTO category_store (category)
+VALUES ('프랑스');
+INSERT INTO category_store (category)
+VALUES ('이탈리아');
 
 create table store
 (
-    id             int             not null primary key auto_increment,
-    name           varchar(50)     not null comment '가게명',
-    img            varchar(500)    not null comment '가게이미지',
-    lat            decimal(18, 10) not null comment '위도',
-    lng            decimal(18, 10) not null comment '경도',
-    tel            varchar(15)     null comment '전화번호',
-    post           varchar(6)      not null comment '우편번호',
-    addr1          varchar(255)    not null comment '기본주소',
-    addr2          varchar(255)    not null comment '상세주소',
-    category       int             null comment '음식점종류',
-    signature_menu varchar(255)    null comment '대표메뉴',
-    is_closed_store tinyint,
-    created_at     datetime        null,
-    updated_at     datetime        null,
+    id              int             not null primary key auto_increment,
+    name            varchar(50)     not null comment '가게명',
+    img             varchar(500)    not null comment '가게이미지',
+    lat             decimal(18, 10) not null comment '위도',
+    lng             decimal(18, 10) not null comment '경도',
+    tel             varchar(15)     null comment '전화번호',
+    post            varchar(6)      not null comment '우편번호',
+    addr1           varchar(255)    not null comment '기본주소',
+    addr2           varchar(255)    not null comment '상세주소',
+    category        int             null comment '음식점종류',
+    signature_menu  varchar(255)    null comment '대표메뉴',
+    is_closed_store tinyint         comment '폐업여부 | 0: 정상, 1: 폐업',
+    created_at      datetime        null,
+    updated_at      datetime        null,
     constraint store_category_store_Id_fk
         foreign key (category) references category_store (Id),
     constraint STORE_DETAIL_IS_CLOSED_STORE_CHECK
@@ -40,7 +51,8 @@ create table store
 );
 comment on table STORE is '가게 기본 정보';
 
-INSERT INTO store (name, img, lat, lng, tel, post, addr1, addr2, category, signature_menu, is_closed_store, created_at, updated_at)
+INSERT INTO store (name, img, lat, lng, tel, post, addr1, addr2, category, signature_menu, is_closed_store, created_at,
+                   updated_at)
 VALUES ('우미노미',
         'https://lh3.googleusercontent.com/IY46sYeT68JA7Zrq7En8FgQdwh4cQ5buQgWc4wDIZdSvIXW2uHea6d1JdaUPJs_JadHe',
         37.5303057771, 126.8992801172, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1,
@@ -48,19 +60,19 @@ VALUES ('우미노미',
 
 create table STORE_DETAIL
 (
-    ID         INT auto_increment,
-    STORE_ID   INT      not null,
-    img        varchar(500),
-    open_day   varchar(50),
-    open_at    varchar(50),
-    off_day    varchar(50),
-    website    varchar(255),
-    personal_table_cnt int,
-    is_self_side_dish tinyint,
-    is_self_water tinyint,
-    is_self_payment tinyint,
-    created_at datetime null,
-    updated_at datetime null,
+    ID                 INT auto_increment,
+    STORE_ID           INT      not null comment 'store 테이블 id',
+    img                varchar(500) comment '가게 이미지 링크',
+    open_day           varchar(50) comment '영업일',
+    open_at            varchar(50) comment '영업시간',
+    off_day            varchar(50) comment '휴업일',
+    website            varchar(255) comment '가게 홈페이지 주소',
+    personal_table_cnt int comment '혼밥 가능 식사 테이블 수',
+    is_self_side_dish  tinyint comment '반찬 셀프 여부 | 0: 쥔장 서빙, 1: 셀프',
+    is_self_water      tinyint comment '물 셀프 여부 | 0: 쥔장 서빙, 1: 셀프',
+    is_self_payment    tinyint comment '계산 셀프 여부 | 0: 쥔장 계산, 1: 셀프',
+    created_at         datetime null,
+    updated_at         datetime null,
     constraint STORE_DETAIL_PK
         primary key (ID),
     constraint STORE_DETAIL_PERSONAL_TABLE_CNT_CHECK
@@ -78,7 +90,8 @@ comment on table STORE_DETAIL is '가게 상세 정보';
 create unique index STORE_DETAIL_STORE_ID_UINDEX
     on STORE_DETAIL (STORE_ID);
 
-insert into store_detail(store_id, img, open_day, open_at, off_day, website, personal_table_cnt, is_self_side_dish, is_self_water, is_self_payment, created_at, updated_at)
+insert into store_detail(store_id, img, open_day, open_at, off_day, website, personal_table_cnt, is_self_side_dish,
+                         is_self_water, is_self_payment, created_at, updated_at)
 values (1,
         'https://mblogthumb-phinf.pstatic.net/MjAxNzAzMDZfMTkw/MDAxNDg4NzgwNTE2OTc0.mZsCNdH3XrGZBEyHwFUiKdAjjZDs8bNozLkjcFDcDAAg.Sgm40zdMHNGxhWI7jX6P-KhBFX7T9WSrhjhUJSDkm_cg.JPEG.ldhbjh/%EC%B0%BD%EC%9B%90_%EC%84%A0%EC%A7%80%EA%B5%AD%EB%B0%A5_%ED%95%A0%EB%A8%B8%EB%8B%88%EA%B5%AD%EB%B0%A5%EC%A7%91__%283%29.jpg?type=w800',
         '매일', '09:00~18:00', '매주 목요일', 'http://www.store.com', 5, 0, 0, 0, now(), now());
@@ -86,8 +99,8 @@ values (1,
 create table REPORT
 (
     ID             INT auto_increment,
-    report_content varchar(4000),
-    served_content varchar(4000),
+    report_content varchar(4000) comment '제보내용',
+    served_content varchar(4000) comment '후속조치내용',
     created_at     datetime null,
     constraint REPORT_PK
         primary key (ID)
@@ -98,13 +111,13 @@ comment on table STORE_DETAIL is '개선 사항 혹은 틀린정보 신고';
 create table review
 (
     id         int auto_increment,
-    store_id   int not null,
-    reviewer   varchar(100),
-    sense_rate tinyint,
-    time_rate  tinyint,
-    taste_rate tinyint,
-    review     varchar(4000),
-    is_delete  tinyint,
+    store_id   int not null comment 'store 테이블 id',
+    reviewer   varchar(100) comment '리뷰작성자',
+    sense_rate tinyint comment '센스 평점',
+    time_rate  tinyint comment '시간 평점',
+    taste_rate tinyint comment '맛 평점',
+    review     varchar(4000) comment '기타 리뷰',
+    is_delete  tinyint comment '삭제여부 | 0: 정상, 1: 삭제',
     created_at datetime,
     updated_at datetime,
     constraint REVIEW_PK
