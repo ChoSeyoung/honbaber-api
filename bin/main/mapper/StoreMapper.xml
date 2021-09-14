@@ -51,7 +51,11 @@
 		       detail.website,
 		       detail.open_day,
 		       detail.open_at,
-		       detail.off_day
+		       detail.off_day,
+		       detail.personal_table_cnt,
+		       detail.is_self_side_dish,
+		       detail.is_self_water,
+		       detail.is_self_payment
 		from store join store_detail as detail on store.id = detail.store_id
 			join review on store.id = review.store_id
 		where store.id = #{id}
