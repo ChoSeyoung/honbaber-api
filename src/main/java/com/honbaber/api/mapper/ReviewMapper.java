@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface ReviewMapper {
 	List<Map<String, Object>> getReview(Integer id);
 	Integer postReview(Map<String, Object> params);
+	Integer putReview(Map<String, Object> params);
+	Integer deleteReview(Integer id);
 }

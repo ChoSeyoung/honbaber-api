@@ -84,10 +84,12 @@ create table review
     time_rate  tinyint,
     taste_rate tinyint,
     review     varchar(4000),
+    is_delete  tinyint,
     created_at datetime,
     updated_at datetime,
     constraint REVIEW_PK
-        primary key (id)
+        primary key (id),
+    constraint REVIEW_IS_DELETE check(is_delete in (0, 1))
 );
 
 comment
@@ -97,10 +99,10 @@ create unique index REVIEW_ID_UINDEX
     on review (id);
 
 insert into review(store_id, reviewer, sense_rate, time_rate, taste_rate, review, created_at, updated_at)
-values (1, '혼밥러#1', 3, 4, 5, 'A', now(), now());
+values (1, '혼밥러#1', 3, 4, 5, 'A', 0, now(), now());
 insert into review(store_id, reviewer, sense_rate, time_rate, taste_rate, review, created_at, updated_at)
-values (1, '혼밥러#2', 1, 2, 3, 'B', now(), now());
+values (1, '혼밥러#2', 1, 2, 3, 'B', 0, now(), now());
 insert into review(store_id, reviewer, sense_rate, time_rate, taste_rate, review, created_at, updated_at)
-values (1, '혼밥러#3', 4, 3, 5, 'C', now(), now());
+values (1, '혼밥러#3', 4, 3, 5, 'C', 0, now(), now());
 insert into review(store_id, reviewer, sense_rate, time_rate, taste_rate, review, created_at, updated_at)
-values (2, '혼밥러#4', 4, 3, 5, 'D', now(), now());
+values (2, '혼밥러#4', 4, 3, 5, 'D', 0, now(), now());

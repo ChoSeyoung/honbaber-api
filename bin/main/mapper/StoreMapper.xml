@@ -1,20 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.honbaber.api.mapper.StoreMapper">
-	<select id="getStore" parameterType="hashmap" resultType="hashmap"> 
+	<select id="getStore" parameterType="hashmap" resultType="hashmap">
 		select store.name,
+		       store.img,
+		       store.lat,
+		       store.lng,
 		       store.tel,
 		       store.post,
 		       store.addr1,
 		       store.addr2,
-		       ( 
+		       (
 		       sum(review.sense_rate) / count(review.id) +
 		       sum(review.time_rate) / count(review.id) +
 		       sum(review.taste_rate) / count(review.id)
 		       )/3 as total_rate,
-		       count(review.id) as total_rate_cnt
-		from store join review on store.id = review.store_id 
+		       count(review.id) as total_rate_cnt,
+			   6371 * acos (cos ( radians(#{lat}) )* cos( radians( store.lat ) )* cos( radians( store.lng ) - radians(#{lng}) )
+			   + sin ( radians(#{lat}) )* sin( radians( store.lat ) )) as radius
+		from store join review on store.id = review.store_id
 		<![CDATA[
 		where (
 			6371 * acos (
@@ -23,18 +28,19 @@
 			* cos( radians( store.lng ) - radians(#{lng}) )
 			+ sin ( radians(#{lat}) )
 			* sin( radians( store.lat ) )
-		)) < #{radius} 
+		)) < #{radius}
 		and store.signature_menu like '%'||#{keyword}||'%'
 		having total_rate >= #{rate}
-		]]> 
+		]]>
 	</select>
-	<select id="getStoreDetail" parameterType="integer" resultType="hashmap"> 
+	<select id="getStoreDetail" parameterType="integer" resultType="hashmap">
 		select store.name,
+		       store.img,
 		       store.tel,
 		       store.post,
 		       store.addr1,
 		       store.addr2,
-		       ( 
+		       (
 		       sum(review.sense_rate) / count(review.id) +
 		       sum(review.time_rate) / count(review.id) +
 		       sum(review.taste_rate) / count(review.id)
@@ -48,6 +54,6 @@
 		       detail.off_day
 		from store join store_detail as detail on store.id = detail.store_id
 			join review on store.id = review.store_id
-		where store.id = #{id}  
+		where store.id = #{id}
 	</select>
 </mapper>

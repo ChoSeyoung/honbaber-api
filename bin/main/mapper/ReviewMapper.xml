@@ -11,7 +11,8 @@
 			   review, 
 			   created_at
 		from review
-		where id = #{id}  
+		where id = #{id} 
+		and is_delete = 0 
 	</select>
 	<insert id="postReview" parameterType="hashmap">
 		insert into review(
@@ -22,4 +23,16 @@
 			#{review}, now(), now()
 		)
 	</insert>
+	<update id="putReview" parameterType="hashmap">
+		update review
+		set sense_rate = #{sense_rate},
+		set time_rate = #{time_rate},
+		set taste_rate = #{taste_rate},
+		set review = #{review},
+		set updated_at = now()
+		where id = #{review_id}
+	</update>
+	<update id="deleteReview" parameterType="integer">
+		update review set is_delete = 1, updated_at = now() where id = #{review_id}
+	</update>
 </mapper>

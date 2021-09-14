@@ -19,4 +19,10 @@ public class ReviewService {
 	public Integer postReview(Map<String, Object> params) {
 		return mapper.postReview(params);
 	}
+	public Integer putReview(Map<String, Object> params) {
+		return mapper.putReview(params);
+	}
+	public Integer deleteReview(Integer id) {
+		return mapper.deleteReview(id);
+	}
 }
