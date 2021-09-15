@@ -20,6 +20,6 @@ PUT | /api/v1/review | 리뷰수정 | ok
 DELETE | /api/v1/review/${id} | 리뷰삭제 | ok
 GET | /api/v1/store/${id}/menu | 메뉴조회 | Not yet
 POST | /api/v1/store/${id}/menu | 메뉴등록 | Not yet
-PUT | /api/v1/store/${id}/menu/${id} | 메뉴수정 | Not yet
+PUT | /api/v1/store/${id}/menu | 메뉴수정 | Not yet
 DELETE | /api/v1/store/${id}/menu/${id} | 메뉴삭제 | Not yet
 POST | /api/v1/report | 의견등록 | Not yet
