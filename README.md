@@ -11,7 +11,7 @@ https://github.com/visualkhh/honbaber
 Method | Reqeust URL | Description | Complete
 ----|----|----|----
 GET | /api/v1/store/${id} | 가게조회 | ok
-POST | /api/v1/store/${id} | 가게등록 | Not yet
+POST | /api/v1/store | 가게등록 | Not yet
 PUT | /api/v1/store/${id} | 가게수정 | Not yet
 DELETE | /api/v1/store/${id} | 가게삭제 | ok 
 GET | /api/v1/store/detail/${id} | 가게 상세정보 조회 | ok
@@ -28,3 +28,7 @@ PUT | /api/v1/store/${id}/menu | 메뉴수정 | ok
 DELETE | /api/v1/store/${id}/menu/${id} | 메뉴삭제 | ok
 GET | /api/v1/report | 의견조회 | Not yet
 POST | /api/v1/report | 의견등록 | Not yet
+
+# API 작성시 주의사항
+1. DB SQL에서 사용하는 select, insert, update, delete 대신에 show, save, modify, remove 로 변경하여 메소드명 작성할 것.
+2. 파라미터의 key는 카멜케이스 적용하여 사용할 것.
