@@ -17,8 +17,7 @@ PUT | ${prefix}/store/${storeId} | 가게수정 | ok
 DELETE | ${prefix}/store/${storeId} | 가게삭제 | ok 
 GET | ${prefix}/store/detail/${storeId} | 가게 상세정보 조회 | ok
 POST | ${prefix}/store/detail/${storeId} | 가게 상세정보 등록 | Not yet
-PUT | ${prefix}/store/detail/${storeId} | 가게 상세정보 수정 | Not yet
-DELETE | ${prefix}/store/detail/${storeId} | 가게 상세정보 삭제 | Not yet
+PUT | ${prefix}/store/detail/${storeId} | 가게 상세정보 수정 | ok
 GET | ${prefix}/review/${id} | 리뷰조회 | ok
 POST | ${prefix}/review/${id} | 리뷰등록 | ok
 PUT | ${prefix}/review/${id} | 리뷰수정 | ok
