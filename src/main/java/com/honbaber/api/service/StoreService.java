@@ -22,4 +22,16 @@ public class StoreService {
 	public Integer closeStore(Integer id) {
 		return mapper.closeStore(id);
 	}
+	public List<Map<String, Object>> getMenu(Integer id){
+		return mapper.getMenu(id);
+	}
+	public Integer putMenu(Map<String, Object> params) {
+		return mapper.putMenu(params);
+	}
+	public Integer postMenu(Map<String, Object> params) {
+		return mapper.postMenu(params);
+	}
+	public Integer deleteMenu(Integer menuId) {
+		return mapper.deleteMenu(menuId);
+	}
 }

@@ -64,4 +64,27 @@
 	<update id="closeStore" parameterType="integer">
 		update store set is_closed_store = 1 where id = #{id}
 	</update>
+	<insert id="registStore" parameterType="hashmap"></insert>
+	<select id="getMenu" parameterType="integer" resultType="hashmap">
+		select id, menu, price, is_signature
+		from menu
+		where store_id = #{id}
+		order by is_signature desc, menu asc
+	</select>
+	<update id="putMenu" parameterType="hashmap">
+		update menu 
+		set menu = #{menu}, 
+			price = #{price}, 
+			is_signature = #{is_signature}, 
+			updated_at = now()
+		where id = #{menu_id}
+		and store_id = #{store_id} 
+	</update>
+	<insert id="postMenu" parameterType="hashmap">
+		insert into menu (store_id, menu, price, is_signature, created_at, updated_at)
+		values(#{store_id}, #{menu}, #{price}, #{is_signature}, now(), now())
+	</insert>
+	<delete id="deleteMenu" parameterType="integer">
+		delete from menu where id = #{menuId}
+	</delete>
 </mapper>

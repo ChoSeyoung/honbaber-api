@@ -96,6 +96,31 @@ values (1,
         'https://mblogthumb-phinf.pstatic.net/MjAxNzAzMDZfMTkw/MDAxNDg4NzgwNTE2OTc0.mZsCNdH3XrGZBEyHwFUiKdAjjZDs8bNozLkjcFDcDAAg.Sgm40zdMHNGxhWI7jX6P-KhBFX7T9WSrhjhUJSDkm_cg.JPEG.ldhbjh/%EC%B0%BD%EC%9B%90_%EC%84%A0%EC%A7%80%EA%B5%AD%EB%B0%A5_%ED%95%A0%EB%A8%B8%EB%8B%88%EA%B5%AD%EB%B0%A5%EC%A7%91__%283%29.jpg?type=w800',
         '매일', '09:00~18:00', '매주 목요일', 'http://www.store.com', 5, 0, 0, 0, now(), now());
 
+create table MENU
+(
+    ID           INT auto_increment,
+    STORE_ID     INT      not null comment 'store 테이블 id',
+    menu         varchar(100) comment '메뉴명',
+    price        int comment '가격',
+    is_signature tinyint comment '대표메뉴여부 | 0: 기본메뉴, 1: 대표메뉴',
+    created_at   datetime null,
+    updated_at   datetime null,
+    constraint MENU_PK
+        primary key (ID),
+    constraint MENU_PRICE_CHECK
+        check (price >= 0),
+    constraint STORE_IS_SIGNATURE_CHECK
+        check (is_signature in (0, 1))
+);
+
+comment on table MENU is '가게 메뉴 정보';
+
+insert into menu(store_id, menu, price, is_signature, created_at, updated_at) values (1, '카이센동', 15000, 1, now(), now());
+insert into menu(store_id, menu, price, is_signature, created_at, updated_at) values (1, '스키야키정식', 15000, 1, now(), now());
+insert into menu(store_id, menu, price, is_signature, created_at, updated_at) values (1, '카이센동 모듬', 30000, 0, now(), now());
+insert into menu(store_id, menu, price, is_signature, created_at, updated_at) values (1, '우니도로', 28000, 0, now(), now());
+insert into menu(store_id, menu, price, is_signature, created_at, updated_at) values (1, '우니마구로', 25000, 0, now(), now());
+
 create table REPORT
 (
     ID             INT auto_increment,
