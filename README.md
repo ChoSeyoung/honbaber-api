@@ -1,8 +1,6 @@
 # honbaber-api
-우리는 불멸의 혼밥러
->혼밥러에 오신걸환영합니다.  
->도심속 정글에 외로고 배고픈 당신이여 사냥을 시작하시죠.
-<br/>
+혼밥러에 오신걸환영합니다. 도심속 정글에 외로고 배고픈 당신이여 사냥을 시작하시죠.
+<br/><br/>
 # 혼밥러 Frond-End
 https://github.com/visualkhh/honbaber
 <br/><br/>
@@ -20,6 +18,7 @@ POST | /api/v1/review | 리뷰등록 | ok
 PUT | /api/v1/review | 리뷰수정 | ok
 DELETE | /api/v1/review/${id} | 리뷰삭제 | ok
 GET | /api/v1/store/${id}/menu | 메뉴조회 | Not yet
-POST | /api/v1/store/${id}/menu/${id} | 메뉴등록 | Not yet
+POST | /api/v1/store/${id}/menu | 메뉴등록 | Not yet
 PUT | /api/v1/store/${id}/menu/${id} | 메뉴수정 | Not yet
 DELETE | /api/v1/store/${id}/menu/${id} | 메뉴삭제 | Not yet
+POST | /api/v1/report | 의견등록 | Not yet
