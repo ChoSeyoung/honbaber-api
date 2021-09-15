@@ -17,3 +17,4 @@ GET | /api/v1/review/${id} | 리뷰조회 | ok
 POST | /api/v1/review | 리뷰등록 | ok
 PUT | /api/v1/review | 리뷰수정 | ok
 DELETE | /api/v1/review/${id} | 리뷰삭제 | ok
+GET | /api/v1/menu/${id} | 메뉴조회 | Not yet
