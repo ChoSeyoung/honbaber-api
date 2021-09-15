@@ -9,29 +9,52 @@ import org.springframework.stereotype.Service;
 import com.honbaber.api.mapper.StoreMapper;
 
 @Service
-public class StoreService {
+public class StoreService implements StoreMapper{
 	@Autowired
 	public StoreMapper mapper;
+
+	public Map<String, Object> showStore(Integer storeId) {
+		return mapper.showStore(storeId);
+	}
+
+	public Integer saveStore(Map<String, Object> params) {
+		return mapper.saveStore(params);
+	}
 	
-	public List<Map<String, Object>> getStore(Map<String, Object> params){
-		return mapper.getStore(params);
+	public Integer modifyStore(Map<String, Object> params) {
+		return mapper.modifyStore(params);
 	}
-	public List<Map<String, Object>> getStoreDetail(Integer id){
-		return mapper.getStoreDetail(id);
+	
+	public Integer removeStore(Integer id) {
+		return mapper.removeStore(id);
 	}
-	public Integer closeStore(Integer id) {
-		return mapper.closeStore(id);
+	
+	public List<Map<String, Object>> showStoreDetail(Integer storeId) {
+		return mapper.showStoreDetail(storeId);
 	}
-	public List<Map<String, Object>> getMenu(Integer id){
-		return mapper.getMenu(id);
+	
+	public Integer modifyStoreDetail(Map<String, Object> params) {
+		return mapper.modifyStoreDetail(params);
 	}
-	public Integer putMenu(Map<String, Object> params) {
-		return mapper.putMenu(params);
+	
+	public List<Map<String, Object>> showStores(Map<String, Object> params) {
+		return mapper.showStores(params);
 	}
-	public Integer postMenu(Map<String, Object> params) {
-		return mapper.postMenu(params);
+
+
+	public List<Map<String, Object>> showMenu(Integer storeId) {
+		return mapper.showMenu(storeId);
 	}
-	public Integer deleteMenu(Integer menuId) {
-		return mapper.deleteMenu(menuId);
+
+	public Integer modifyMenu(Map<String, Object> params) {
+		return mapper.modifyMenu(params);
+	}
+
+	public Integer saveMenu(Map<String, Object> params) {
+		return mapper.saveMenu(params);
+	}
+
+	public Integer removeMenu(Integer menuId) {
+		return mapper.removeMenu(menuId);
 	}
 }

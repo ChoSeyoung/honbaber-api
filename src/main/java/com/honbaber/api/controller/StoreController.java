@@ -21,39 +21,63 @@ public class StoreController {
 
 	@Autowired
 	StoreService storeService;
-	
+
 	@GetMapping("/store")
-	public List<Map<String, Object>> getStore(@RequestParam Map<String, Object> params) {
-		return storeService.getStore(params);
+	public List<Map<String, Object>> showStores(@RequestParam Map<String, Object> params) {
+		return storeService.showStores(params);
 	}
+	
+	@GetMapping("/store/{storeId}")
+	public Map<String, Object> showStore(@PathVariable("storeId") Integer storeId) {
+		return storeService.showStore(storeId);
+	}
+
 	@PostMapping("/store")
-	public void registStore(@RequestParam Map<String, Object> params) {
-		
+	public void saveStore(@RequestParam Map<String, Object> params) {
+		storeService.saveStore(params);
 	}
-	@GetMapping("/store/detail/{id}")
-	public List<Map<String, Object>> getStoreDetail(@PathVariable("id") Integer id) {
-		return storeService.getStoreDetail(id);
+
+	@PutMapping("/store/{storeId}")
+	public void modifyStore(@PathVariable("storeId") Integer storeId, @RequestParam Map<String, Object> params) {
+		params.put("storeId", storeId);
+		storeService.saveStore(params);
 	}
-	@PutMapping("/store/close/{id}")
-	public void closeStore(@PathVariable("id") Integer id) {
-		storeService.closeStore(id);
+
+	@DeleteMapping("/store/{storeId}")
+	public void removeStore(@PathVariable("storeId") Integer storeId) {
+		storeService.removeStore(storeId);
 	}
-	@GetMapping("/store/{id}/menu")
-	public List<Map<String, Object>> getMenu(@PathVariable("id") Integer id) {
-		return storeService.getMenu(id);
+	
+	@GetMapping("/store/detail/{storeId}")
+	public List<Map<String, Object>> showStoreDetail(@PathVariable("storeId") Integer storeId) {
+		return storeService.showStoreDetail(storeId);
 	}
-	@PutMapping("/store/{id}/menu")
-	public void putMenu(@PathVariable("id") Integer id, @RequestParam Map<String, Object> params) {
-		params.put("store_id", id);
-		storeService.putMenu(params);
+
+	@PutMapping("/store/detail/{storeId}")
+	public void modifyStoreDetail(@PathVariable("storeId") Integer storeId, @RequestParam Map<String, Object> params) {
+		params.put("storeId", storeId);
+		storeService.modifyStoreDetail(params);
 	}
-	@PostMapping("/store/{id}/menu")
-	public void postMenu(@PathVariable("id") Integer id, @RequestParam Map<String, Object> params) {
-		params.put("store_id", id);
-		storeService.postMenu(params);
+
+	@GetMapping("/store/{storeId}/menu")
+	public List<Map<String, Object>> showMenu(@PathVariable("storeId") Integer storeId) {
+		return storeService.showMenu(storeId);
 	}
-	@DeleteMapping("/store/{id}/menu/{menuId}")
+
+	@PutMapping("/store/{storeId}/menu")
+	public void putMenu(@PathVariable("id") Integer storeId, @RequestParam Map<String, Object> params) {
+		params.put("storeId", storeId);
+		storeService.modifyMenu(params);
+	}
+
+	@PostMapping("/store/{storeId}/menu")
+	public void postMenu(@PathVariable("id") Integer storeId, @RequestParam Map<String, Object> params) {
+		params.put("storeId", storeId);
+		storeService.saveMenu(params);
+	}
+
+	@DeleteMapping("/store/{storeId}/menu/{menuId}")
 	public void deleteMenu(@PathVariable("menuId") Integer menuId) {
-		storeService.deleteMenu(menuId);
+		storeService.removeMenu(menuId);
 	}
 }

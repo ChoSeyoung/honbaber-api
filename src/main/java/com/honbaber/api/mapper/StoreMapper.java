@@ -9,11 +9,25 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface StoreMapper {
-	List<Map<String, Object>> getStore(Map<String, Object> params);
-	List<Map<String, Object>> getStoreDetail(Integer id);
-	Integer closeStore(Integer id);
-	List<Map<String, Object>> getMenu(Integer id);
-	Integer putMenu(Map<String, Object> params);
-	Integer postMenu(Map<String, Object> params);
-	Integer deleteMenu(Integer menuId);
+	Map<String, Object> showStore(Integer storeId);
+
+	Integer saveStore(Map<String, Object> params);
+	
+	Integer modifyStore(Map<String, Object> params);
+	
+	Integer removeStore(Integer id);
+	
+	List<Map<String, Object>> showStoreDetail(Integer storeId);
+
+	Integer modifyStoreDetail(Map<String, Object> params);
+	
+	List<Map<String, Object>> showStores(Map<String, Object> params);
+
+	List<Map<String, Object>> showMenu(Integer id);
+
+	Integer modifyMenu(Map<String, Object> params);
+
+	Integer saveMenu(Map<String, Object> params);
+
+	Integer removeMenu(Integer menuId);
 }

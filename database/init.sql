@@ -62,7 +62,6 @@ create table STORE_DETAIL
 (
     ID                 INT auto_increment,
     STORE_ID           INT      not null comment 'store 테이블 id',
-    img                varchar(500) comment '가게 이미지 링크',
     open_day           varchar(50) comment '영업일',
     open_at            varchar(50) comment '영업시간',
     off_day            varchar(50) comment '휴업일',
@@ -90,11 +89,8 @@ comment on table STORE_DETAIL is '가게 상세 정보';
 create unique index STORE_DETAIL_STORE_ID_UINDEX
     on STORE_DETAIL (STORE_ID);
 
-insert into store_detail(store_id, img, open_day, open_at, off_day, website, personal_table_cnt, is_self_side_dish,
-                         is_self_water, is_self_payment, created_at, updated_at)
-values (1,
-        'https://mblogthumb-phinf.pstatic.net/MjAxNzAzMDZfMTkw/MDAxNDg4NzgwNTE2OTc0.mZsCNdH3XrGZBEyHwFUiKdAjjZDs8bNozLkjcFDcDAAg.Sgm40zdMHNGxhWI7jX6P-KhBFX7T9WSrhjhUJSDkm_cg.JPEG.ldhbjh/%EC%B0%BD%EC%9B%90_%EC%84%A0%EC%A7%80%EA%B5%AD%EB%B0%A5_%ED%95%A0%EB%A8%B8%EB%8B%88%EA%B5%AD%EB%B0%A5%EC%A7%91__%283%29.jpg?type=w800',
-        '매일', '09:00~18:00', '매주 목요일', 'http://www.store.com', 5, 0, 0, 0, now(), now());
+insert into store_detail(store_id, open_day, open_at, off_day, website, personal_table_cnt, is_self_side_dish, is_self_water, is_self_payment, created_at, updated_at)
+values (1, '매일', '09:00~18:00', '매주 목요일', 'http://www.store.com', 5, 0, 0, 0, now(), now());
 
 create table MENU
 (
