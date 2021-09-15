@@ -10,9 +10,10 @@ https://github.com/visualkhh/honbaber
 # API 요청 리스트
 Method | Reqeust URL | Description | Complete
 ----|----|----|----
-GET | /api/v1/store | 주변 가게 검색 | ok
+GET | /api/v1/store | 가게조회 | ok
 GET | /api/v1/store/detail/${id} | 가게 상세 정보 조회 | ok
-PUT | /api/v1/store/close/${id} | 가게 폐업 처리 | ok 
+POST | /api/v1/store | 가게등록 | Not yet
+PUT | /api/v1/store/close/${id} | 가게삭제 | ok 
 GET | /api/v1/review/${id} | 리뷰조회 | ok
 POST | /api/v1/review | 리뷰등록 | ok
 PUT | /api/v1/review | 리뷰수정 | ok
