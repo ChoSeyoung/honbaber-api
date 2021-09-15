@@ -4,10 +4,10 @@
 # 혼밥러 Frond-End
 https://github.com/visualkhh/honbaber
 <br/><br/>
-### 데이터베이스 시딩
+# 데이터베이스 시딩
 서비스 동작시 database/init.sql 파일로 시딩 합니다.
 <br/><br/>
-### API 요청 리스트
+# API 요청 리스트
 Method | Reqeust URL | Description | Complete | return
 ----|----|----|----|----
 GET | /api/v1/store | 주변 가게 검색 | ok | 가게명, 주소, 전화번호, 총평점
