@@ -11,9 +11,13 @@ https://github.com/visualkhh/honbaber
 Method | Reqeust URL | Description | Complete
 ----|----|----|----
 GET | /api/v1/store | 가게조회 | ok
-GET | /api/v1/store/detail/${id} | 가게 상세 정보 조회 | ok
 POST | /api/v1/store | 가게등록 | Not yet
-PUT | /api/v1/store/close/${id} | 가게삭제 | ok 
+PUT | /api/v1/store | 가게수정 | Not yet
+DELETE | /api/v1/store/close/${id} | 가게삭제 | ok 
+GET | /api/v1/store/detail/${id} | 가게 상세정보 조회 | ok
+POST | /api/v1/store/detail/${id} | 가게 상세정보 등록 | Not yet
+PUT | /api/v1/store/detail/${id} | 가게 상세정보 수정 | Not yet
+DELETE | /api/v1/store/detail/${id} | 가게 상세정보 삭제 | Not yet
 GET | /api/v1/review/${id} | 리뷰조회 | ok
 POST | /api/v1/review | 리뷰등록 | ok
 PUT | /api/v1/review | 리뷰수정 | ok
