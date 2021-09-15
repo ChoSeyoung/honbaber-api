@@ -128,7 +128,7 @@
 	<select id="showMenu" parameterType="integer" resultType="hashmap">
 		select id, menu, price, is_signature
 		from menu
-		where store_id = #{id}
+		where store_id = #{storeId}
 		order by is_signature desc, menu asc
 	</select>
 	

@@ -64,20 +64,20 @@ public class StoreController {
 		return storeService.showMenu(storeId);
 	}
 
-	@PutMapping("/store/{storeId}/menu")
-	public void putMenu(@PathVariable("id") Integer storeId, @RequestParam Map<String, Object> params) {
-		params.put("storeId", storeId);
-		storeService.modifyMenu(params);
-	}
-
 	@PostMapping("/store/{storeId}/menu")
-	public void postMenu(@PathVariable("id") Integer storeId, @RequestParam Map<String, Object> params) {
+	public void saveMenu(@PathVariable("storeId") Integer storeId, @RequestParam Map<String, Object> params) {
 		params.put("storeId", storeId);
 		storeService.saveMenu(params);
 	}
 
+	@PutMapping("/store/{storeId}/menu")
+	public void modifyMenu(@PathVariable("storeId") Integer storeId, @RequestParam Map<String, Object> params) {
+		params.put("storeId", storeId);
+		storeService.modifyMenu(params);
+	}
+	
 	@DeleteMapping("/store/{storeId}/menu/{menuId}")
-	public void deleteMenu(@PathVariable("menuId") Integer menuId) {
+	public void removeMenu(@PathVariable("menuId") Integer menuId) {
 		storeService.removeMenu(menuId);
 	}
 }
