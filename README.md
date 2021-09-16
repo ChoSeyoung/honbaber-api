@@ -7,7 +7,7 @@ https://github.com/visualkhh/honbaber
 # 데이터베이스 시딩
 서비스 동작시 database/init.sql 파일로 시딩 합니다.
 <br/><br/>
-# API 요청 리스트 (prefix := /api/v1)
+# API 요청 리스트 (prefix := /api/v1.0)
 | Method | Reqeust URL                               | Description   | Complete |
 |--------|-------------------------------------------|---------------|----------|
 | GET    | ${prefix}/store                           | 주변 가게 조회    | ok      |
