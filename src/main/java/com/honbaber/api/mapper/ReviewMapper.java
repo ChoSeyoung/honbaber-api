@@ -9,8 +9,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface ReviewMapper {
-	List<Map<String, Object>> getReview(Integer id);
-	Integer postReview(Map<String, Object> params);
-	Integer putReview(Map<String, Object> params);
-	Integer deleteReview(Integer id);
+	List<Map<String, Object>> showReview(Integer reviewId);
+
+	Integer saveReview(Map<String, Object> params);
+
+	Integer modifyReview(Map<String, Object> params);
+
+	Integer removeReview(Integer reviewId);
 }

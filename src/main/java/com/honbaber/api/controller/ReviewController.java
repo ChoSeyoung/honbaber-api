@@ -21,21 +21,24 @@ public class ReviewController {
 
 	@Autowired
 	ReviewService reviewService;
-	
-	@GetMapping("/review/{id}")
-	public List<Map<String, Object>> getReview(@PathVariable("id") Integer id) {
-		return reviewService.getReview(id);
+
+	@GetMapping("/review/{reviewId}")
+	public List<Map<String, Object>> showReview(@PathVariable("reviewId") Integer reviewId) {
+		return reviewService.showReview(reviewId);
 	}
+
 	@PostMapping("/review")
-	public void postReview(@RequestParam Map<String, Object> params) {
-		reviewService.postReview(params);
+	public void saveReview(@RequestParam Map<String, Object> params) {
+		reviewService.saveReview(params);
 	}
+
 	@PutMapping("/review")
-	public void putReview(@RequestParam Map<String, Object> params) {
-		reviewService.putReview(params);
+	public void modifyReview(@RequestParam Map<String, Object> params) {
+		reviewService.modifyReview(params);
 	}
-	@DeleteMapping("/review/{id}")
-	public void deleteReview(@PathVariable("id") Integer id) {
-		reviewService.deleteReview(id);
+
+	@DeleteMapping("/review/{reviewId}")
+	public void removeReview(@PathVariable("reviewId") Integer reviewId) {
+		reviewService.removeReview(reviewId);
 	}
 }

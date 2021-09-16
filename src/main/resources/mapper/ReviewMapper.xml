@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.honbaber.api.mapper.ReviewMapper">
-	<select id="getReview" parameterType="integer" resultType="hashmap"> 
+	<select id="showReview" parameterType="integer" resultType="hashmap"> 
 		select id, 
 		       (sense_rate + time_rate + taste_rate) / 3 as total_rate,
 			   sense_rate, 
@@ -11,28 +11,28 @@
 			   review, 
 			   created_at
 		from review
-		where id = #{id} 
+		where id = #{reviewId} 
 		and is_delete = 0 
 	</select>
-	<insert id="postReview" parameterType="hashmap">
+	<insert id="saveReview" parameterType="hashmap">
 		insert into review(
 			store_id, reviewer, sense_rate, time_rate, taste_rate, 
 			review, created_at, updated_at
 		) values (
-			#{store_id}, concat('혼밥러#',(select count(id)+1 from review)), #{sense_rate}, #{time_rate}, #{taste_rate},
+			#{storeId}, concat('혼밥러#',(select count(id)+1 from review)), #{senseRate}, #{timeRate}, #{tasteRate},
 			#{review}, now(), now()
 		)
 	</insert>
-	<update id="putReview" parameterType="hashmap">
+	<update id="modifyReview" parameterType="hashmap">
 		update review
-		set sense_rate = #{sense_rate},
-		set time_rate = #{time_rate},
-		set taste_rate = #{taste_rate},
+		set sense_rate = #{senseRate},
+		set time_rate = #{timeRate},
+		set taste_rate = #{tasteRate},
 		set review = #{review},
 		set updated_at = now()
-		where id = #{review_id}
+		where id = #{reviewId}
 	</update>
-	<update id="deleteReview" parameterType="integer">
-		update review set is_delete = 1, updated_at = now() where id = #{review_id}
+	<update id="removeReview" parameterType="integer">
+		update review set is_delete = 1, updated_at = now() where id = #{reviewId}
 	</update>
 </mapper>

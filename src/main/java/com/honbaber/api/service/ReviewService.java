@@ -9,20 +9,20 @@ import org.springframework.stereotype.Service;
 import com.honbaber.api.mapper.ReviewMapper;
 
 @Service
-public class ReviewService {
+public class ReviewService implements ReviewMapper{
 	@Autowired
 	public ReviewMapper mapper;
 	
-	public List<Map<String, Object>> getReview(Integer id){
-		return mapper.getReview(id);
+	public List<Map<String, Object>> showReview(Integer reviewId){
+		return mapper.showReview(reviewId);
 	}
-	public Integer postReview(Map<String, Object> params) {
-		return mapper.postReview(params);
+	public Integer saveReview(Map<String, Object> params) {
+		return mapper.saveReview(params);
 	}
-	public Integer putReview(Map<String, Object> params) {
-		return mapper.putReview(params);
+	public Integer modifyReview(Map<String, Object> params) {
+		return mapper.modifyReview(params);
 	}
-	public Integer deleteReview(Integer id) {
-		return mapper.deleteReview(id);
+	public Integer removeReview(Integer reviewId) {
+		return mapper.removeReview(reviewId);
 	}
 }
