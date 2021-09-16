@@ -1,5 +1,6 @@
 package com.honbaber.api.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.honbaber.api.service.ReviewService;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/${API_VERSION}")
 public class ReviewController {
@@ -22,23 +27,67 @@ public class ReviewController {
 	@Autowired
 	ReviewService reviewService;
 
-	@GetMapping("/review/{reviewId}")
-	public List<Map<String, Object>> showReview(@PathVariable("reviewId") Integer reviewId) {
+	@ApiOperation(value = "리뷰조회")
+	@GetMapping("/review/{review_id}")
+	public List<Map<String, Object>> showReview(@PathVariable("review_id") Integer reviewId) {
 		return reviewService.showReview(reviewId);
 	}
 
 	@PostMapping("/review")
-	public void saveReview(@RequestParam Map<String, Object> params) {
+	@ApiOperation(value = "리뷰저장")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "store_id", value = "가게 ID", required = true),
+		@ApiImplicitParam(name = "sense_rate", value = "센스 평점", required = true),
+		@ApiImplicitParam(name = "time_rate", value = "시간 평점", required = true),
+		@ApiImplicitParam(name = "taste_rate", value = "맛 평점", required = true),
+		@ApiImplicitParam(name = "review", value = "상세리뷰", required = false, defaultValue = "")
+	})
+	public void saveReview(@RequestParam("store_id") Integer storeId,
+			@RequestParam("sense_rate") Integer senseRate,
+			@RequestParam("time_rate") Integer timeRate,
+			@RequestParam("taste_rate") Integer tasteRate,
+			@RequestParam("review") String review) {
+		
+		Map<String, Object> params = new HashMap<>();
+		
+		params.put("storeId", storeId);
+		params.put("senseRate", senseRate);
+		params.put("timeRate", timeRate);
+		params.put("tasteRate", tasteRate);
+		params.put("review", review);
+		
 		reviewService.saveReview(params);
 	}
 
 	@PutMapping("/review")
-	public void modifyReview(@RequestParam Map<String, Object> params) {
+	@ApiOperation(value = "리뷰수정")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "store_id", value = "가게 ID", required = true),
+		@ApiImplicitParam(name = "sense_rate", value = "센스 평점", required = true),
+		@ApiImplicitParam(name = "time_rate", value = "시간 평점", required = true),
+		@ApiImplicitParam(name = "taste_rate", value = "맛 평점", required = true),
+		@ApiImplicitParam(name = "review", value = "상세리뷰", required = false, defaultValue = "")
+	})
+	public void modifyReview(@RequestParam("review_id") Integer reviewId,
+			@RequestParam("sense_rate") Integer senseRate,
+			@RequestParam("time_rate") Integer timeRate,
+			@RequestParam("taste_rate") Integer tasteRate,
+			@RequestParam("review") String review) {
+		
+		Map<String, Object> params = new HashMap<>();
+		
+		params.put("reviewId", reviewId);
+		params.put("senseRate", senseRate);
+		params.put("timeRate", timeRate);
+		params.put("tasteRate", tasteRate);
+		params.put("review", review);
+		
 		reviewService.modifyReview(params);
 	}
 
-	@DeleteMapping("/review/{reviewId}")
-	public void removeReview(@PathVariable("reviewId") Integer reviewId) {
+	@DeleteMapping("/review/{review_id}")
+	@ApiOperation(value = "리뷰삭제")
+	public void removeReview(@PathVariable("review_id") Integer reviewId) {
 		reviewService.removeReview(reviewId);
 	}
 }
