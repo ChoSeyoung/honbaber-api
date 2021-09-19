@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.honbaber.api.service.ReviewService;
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/api/${API_VERSION}")
@@ -29,65 +28,55 @@ public class ReviewController {
 
 	@ApiOperation(value = "리뷰조회")
 	@GetMapping("/review/{review_id}")
-	public List<Map<String, Object>> showReview(@PathVariable("review_id") Integer reviewId) {
+	public List<Map<String, Object>> showReview(
+			@ApiParam(value = "review_id", name = "리뷰 ID") @PathVariable("review_id") Integer reviewId) {
 		return reviewService.showReview(reviewId);
 	}
 
 	@PostMapping("/review")
 	@ApiOperation(value = "리뷰저장")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = "store_id", dataType = "integer", value = "가게 ID", required = true),
-		@ApiImplicitParam(name = "sense_rate", dataType = "integer", value = "센스 평점", required = true),
-		@ApiImplicitParam(name = "time_rate", dataType = "integer", value = "시간 평점", required = true),
-		@ApiImplicitParam(name = "taste_rate", dataType = "integer", value = "맛 평점", required = true),
-		@ApiImplicitParam(name = "review", dataType = "string", value = "상세리뷰", required = false)
-	})
-	public void saveReview(@RequestParam("store_id") Integer storeId,
-			@RequestParam("sense_rate") Integer senseRate,
-			@RequestParam("time_rate") Integer timeRate,
-			@RequestParam("taste_rate") Integer tasteRate,
-			@RequestParam("review") String review) {
-		
+	public void saveReview(
+			@ApiParam(value = "store_id", name = "가게 ID") @RequestParam("store_id") Integer storeId,
+			@ApiParam(value = "sense_rate", name = "센스 평점") @RequestParam("sense_rate") Integer senseRate,
+			@ApiParam(value = "time_rate", name = "시간 평점") @RequestParam("time_rate") Integer timeRate,
+			@ApiParam(value = "taste_rate", name = "맛 평점") @RequestParam("taste_rate") Integer tasteRate,
+			@ApiParam(value = "review", name = "리뷰") @RequestParam(value = "review", required = false) String review) {
+
 		Map<String, Object> params = new HashMap<>();
-		
+
 		params.put("storeId", storeId);
 		params.put("senseRate", senseRate);
 		params.put("timeRate", timeRate);
 		params.put("tasteRate", tasteRate);
 		params.put("review", review);
-		
+
 		reviewService.saveReview(params);
 	}
 
 	@PutMapping("/review")
 	@ApiOperation(value = "리뷰수정")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = "store_id", value = "가게 ID", required = true),
-		@ApiImplicitParam(name = "sense_rate", value = "센스 평점", required = true),
-		@ApiImplicitParam(name = "time_rate", value = "시간 평점", required = true),
-		@ApiImplicitParam(name = "taste_rate", value = "맛 평점", required = true),
-		@ApiImplicitParam(name = "review", value = "상세리뷰", required = false, defaultValue = "")
-	})
-	public void modifyReview(@RequestParam("review_id") Integer reviewId,
-			@RequestParam("sense_rate") Integer senseRate,
-			@RequestParam("time_rate") Integer timeRate,
-			@RequestParam("taste_rate") Integer tasteRate,
-			@RequestParam("review") String review) {
-		
+	public void modifyReview(
+			@ApiParam(value = "review_id", name = "리뷰 ID") @RequestParam("review_id") Integer reviewId, 
+			@ApiParam(value = "sense_rate", name = "센스 평점") @RequestParam("sense_rate") Integer senseRate,
+			@ApiParam(value = "time_rate", name = "시간 평점") @RequestParam("time_rate") Integer timeRate,
+			@ApiParam(value = "taste_rate", name = "맛 평점") @RequestParam("taste_rate") Integer tasteRate,
+			@ApiParam(value = "review", name = "리뷰") @RequestParam(value = "review", required = false) String review) {
+
 		Map<String, Object> params = new HashMap<>();
-		
+
 		params.put("reviewId", reviewId);
 		params.put("senseRate", senseRate);
 		params.put("timeRate", timeRate);
 		params.put("tasteRate", tasteRate);
 		params.put("review", review);
-		
+
 		reviewService.modifyReview(params);
 	}
 
 	@DeleteMapping("/review/{review_id}")
 	@ApiOperation(value = "리뷰삭제")
-	public void removeReview(@PathVariable("review_id") Integer reviewId) {
+	public void removeReview(
+			@ApiParam(value = "review_id", name = "리뷰 ID") @PathVariable("review_id") Integer reviewId) {
 		reviewService.removeReview(reviewId);
 	}
 }

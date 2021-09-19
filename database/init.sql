@@ -38,7 +38,7 @@ create table store
     tel             varchar(15)     null comment '전화번호',
     post            varchar(6)      not null comment '우편번호',
     addr1           varchar(255)    not null comment '기본주소',
-    addr2           varchar(255)    not null comment '상세주소',
+    addr2           varchar(255)    null comment '상세주소',
     category        int             null comment '음식점종류',
     signature_menu  varchar(255)    null comment '대표메뉴',
     is_closed_store tinyint         comment '폐업여부 | 0: 정상, 1: 폐업',
@@ -51,12 +51,9 @@ create table store
 );
 comment on table STORE is '가게 기본 정보';
 
-INSERT INTO store (name, img, lat, lng, tel, post, addr1, addr2, category, signature_menu, is_closed_store, created_at,
-                   updated_at)
-VALUES ('우미노미',
-        'https://lh3.googleusercontent.com/IY46sYeT68JA7Zrq7En8FgQdwh4cQ5buQgWc4wDIZdSvIXW2uHea6d1JdaUPJs_JadHe',
-        37.5303057771, 126.8992801172, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1,
-        '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', 0, now(), now());
+insert into STORE (NAME, IMG, LAT, LNG, TEL, POST, ADDR1, ADDR2, CATEGORY, SIGNATURE_MENU, IS_CLOSED_STORE, CREATED_AT, UPDATED_AT)
+values  ('우미노미', 'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA3MTBfMzAw%2FMDAxNTk0MzQwNjMyOTUx.-M-qdSIMdEZmmer_xvd9ZQRQWvz4OVgqZaWf80b4fAEg.-Z-itc7EBgCsQEPkJN2NYa5lS41kcWi3r1fl7IzcST4g.JPEG.hogr1203%2FIMG_9331.JPG', 37.5303057771, 126.8992801172, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1, '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', 0, '2021-09-18 22:47:53.582105', '2021-09-18 22:47:53.582105'),
+        ('자성당쫄면 영등포구청역점', 'https://cdn.imweb.me/thumbnail/20210827/8c64fc4754736.png', 37.5250497075, 126.8965910696, '02-6013-2685', '07259', '서울특별시 영등포구 당산동3가 314', ' ', 5, '온쫄면, 냉쫄면, 비빔쫄면, 갈비만두, 비빔만두, 유부초밥', 0, '2021-09-18 22:55:03.000000', '2021-09-18 22:55:11.000000');
 
 create table STORE_DETAIL
 (
