@@ -42,3 +42,4 @@ https://github.com/visualkhh/honbaber
 | 수정 | update[메소드명] | modify[메소드명] |
 | 삭제 | delete[메소드명] | remove[메소드명] |
 2. 파라미터의 key는 카멜케이스 적용하여 사용할 것.
+3. 모든 API는 @ApiOperation과 @ApiParam을 통하여 Swagger 적용할 수 있도록 한다.
