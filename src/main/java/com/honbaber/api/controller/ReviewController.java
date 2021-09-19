@@ -26,8 +26,8 @@ public class ReviewController {
 	@Autowired
 	ReviewService reviewService;
 
-	@ApiOperation(value = "리뷰조회")
 	@GetMapping("/review/{review_id}")
+	@ApiOperation(value = "리뷰조회")
 	public List<Map<String, Object>> showReview(
 			@ApiParam(value = "review_id", name = "리뷰 ID") @PathVariable("review_id") Integer reviewId) {
 		return reviewService.showReview(reviewId);

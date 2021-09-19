@@ -1,7 +1,7 @@
 create table category_store
 (
     Id       int         not null primary key auto_increment,
-    category varchar(10) null comment '업종'
+    category varchar(10) not null comment '업종'
 );
 comment on table category_store is '가게 업종 카테고리 정보';
 
@@ -39,11 +39,11 @@ create table store
     post            varchar(6)      not null comment '우편번호',
     addr1           varchar(255)    not null comment '기본주소',
     addr2           varchar(255)    null comment '상세주소',
-    category        int             null comment '음식점종류',
+    category        int             not null comment '음식점종류',
     signature_menu  varchar(255)    null comment '대표메뉴',
-    is_closed_store tinyint         comment '폐업여부 | 0: 정상, 1: 폐업',
-    created_at      datetime        null,
-    updated_at      datetime        null,
+    is_closed_store tinyint         not null comment '폐업여부 | 0: 정상, 1: 폐업',
+    created_at      datetime        not null,
+    updated_at      datetime        not null,
     constraint store_category_store_Id_fk
         foreign key (category) references category_store (Id),
     constraint STORE_DETAIL_IS_CLOSED_STORE_CHECK
