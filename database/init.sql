@@ -53,10 +53,15 @@ comment on table STORE is '가게 기본 정보';
 
 INSERT INTO store (name, img, lat, lng, tel, post, addr1, addr2, category, signature_menu, is_closed_store, created_at,
                    updated_at)
-VALUES ('우미노미',
-        'https://lh3.googleusercontent.com/IY46sYeT68JA7Zrq7En8FgQdwh4cQ5buQgWc4wDIZdSvIXW2uHea6d1JdaUPJs_JadHe',
-        37.5303057771, 126.8992801172, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1,
-        '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', 0, now(), now());
+VALUES
+    ('🍣 우미노미',
+    'https://lh3.googleusercontent.com/IY46sYeT68JA7Zrq7En8FgQdwh4cQ5buQgWc4wDIZdSvIXW2uHea6d1JdaUPJs_JadHe',
+    37.5303057771, 126.8992801172, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1,
+    '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', 0, now(), now()),
+    ('🍘 우미노미2',
+    'https://lh3.googleusercontent.com/IY46sYeT68JA7Zrq7En8FgQdwh4cQ5buQgWc4wDIZdSvIXW2uHea6d1JdaUPJs_JadHe',
+    37.529670, 126.898726, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1,
+'카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', 0, now(), now());
 
 create table STORE_DETAIL
 (

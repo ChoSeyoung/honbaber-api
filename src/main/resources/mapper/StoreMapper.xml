@@ -20,14 +20,14 @@
 		from store join review on store.id = review.store_id
 		where store.id = #{storeId}
 	</select>
-	
+
 	<insert id="saveStore" parameterType="hashmap">
-		insert into store (name, img, lat, lng, tel, post, addr1, addr2, category, signature_menu, 
+		insert into store (name, img, lat, lng, tel, post, addr1, addr2, category, signature_menu,
 			is_closed_store, created_at, updated_at)
-		values (#{name}, #{img}, #{lat}, #{lng}, #{tel}, #{post}, #{addr1}, #{addr2}, #{category}, #{signatureMenu}, 
-			#{isClosedStore}, now(), now()) 
+		values (#{name}, #{img}, #{lat}, #{lng}, #{tel}, #{post}, #{addr1}, #{addr2}, #{category}, #{signatureMenu},
+			#{isClosedStore}, now(), now())
 	</insert>
-	
+
 	<update id="modifyStore" parameterType="hashmap">
 		update store
 		set name = #{name},
@@ -43,11 +43,11 @@
 			updated_at = now()
 		where id = #{storeId}
 	</update>
-	
+
 	<update id="removeStore" parameterType="integer">
 		update store set is_closed_store = 1 where id = #{storeId}
 	</update>
-	
+
 	<select id="showStoreDetail" parameterType="integer" resultType="hashmap">
 		select store.name,
 		       store.img,
@@ -75,7 +75,7 @@
 			join review on store.id = review.store_id
 		where store.id = #{storeId}
 	</select>
-	
+
 	<update id="modifyStoreDetail" parameterType="hashmap">
 		update store_detail
 		set open_day = #{openDay},
@@ -89,9 +89,10 @@
 			updated_at = now()
 		where store_id = #{storeId}
 	</update>
-	
+
 	<select id="showStores" parameterType="hashmap" resultType="hashmap">
-		select store.name,
+		select store.id,
+		       store.name,
 		       store.img,
 		       store.lat,
 		       store.lng,
@@ -119,34 +120,35 @@
 		)) < #{radius}
 		and store.signature_menu like '%'||#{keyword}||'%'
 		and store.is_closed_store = 0
+		group by store.name, store.img, store.lat, store.lng, store.tel, store.post, store.addr1, store.addr2
 		having total_rate >= #{rate}
 		]]>
 	</select>
-	
+
 	<insert id="registStore" parameterType="hashmap"></insert>
-	
+
 	<select id="showMenu" parameterType="integer" resultType="hashmap">
 		select id, menu, price, is_signature
 		from menu
 		where store_id = #{storeId}
 		order by is_signature desc, menu asc
 	</select>
-	
+
 	<update id="modifyMenu" parameterType="hashmap">
-		update menu 
-		set menu = #{menu}, 
-			price = #{price}, 
-			is_signature = #{isSignature}, 
+		update menu
+		set menu = #{menu},
+			price = #{price},
+			is_signature = #{isSignature},
 			updated_at = now()
 		where id = #{menuId}
-		and store_id = #{storeId} 
+		and store_id = #{storeId}
 	</update>
-	
+
 	<insert id="saveMenu" parameterType="hashmap">
 		insert into menu (store_id, menu, price, is_signature, created_at, updated_at)
 		values(#{storeId}, #{menu}, #{price}, #{isSignature}, now(), now())
 	</insert>
-	
+
 	<delete id="removeMenu" parameterType="integer">
 		delete from menu where id = #{menuId}
 	</delete>
