@@ -1,32 +1,23 @@
 create table category_store
 (
     Id       int         not null primary key auto_increment,
-    category varchar(10) not null comment '업종'
+    category varchar(10) not null comment '업종',
+    icon varchar(4) not null comment '아이콘'
 );
 comment on table category_store is '가게 업종 카테고리 정보';
 
-INSERT INTO category_store (category)
-VALUES ('일식');
-INSERT INTO category_store (category)
-VALUES ('한식');
-INSERT INTO category_store (category)
-VALUES ('중식');
-INSERT INTO category_store (category)
-VALUES ('양식');
-INSERT INTO category_store (category)
-VALUES ('퓨전');
-INSERT INTO category_store (category)
-VALUES ('디저트');
-INSERT INTO category_store (category)
-VALUES ('베트남');
-INSERT INTO category_store (category)
-VALUES ('태국');
-INSERT INTO category_store (category)
-VALUES ('인도');
-INSERT INTO category_store (category)
-VALUES ('프랑스');
-INSERT INTO category_store (category)
-VALUES ('이탈리아');
+insert into PUBLIC.CATEGORY_STORE (ID, CATEGORY, ICON)
+values  (1, '일식', '🇯🇵'),
+        (2, '한식', '🇰🇷'),
+        (3, '중식', '🇨🇳'),
+        (4, '양식', '🇺🇸'),
+        (5, '퓨전', '🤩'),
+        (6, '디저트', '🧋'),
+        (7, '베트남', '🇻🇳'),
+        (8, '태국', '🇹🇭'),
+        (9, '인도', '🇮🇳'),
+        (10, '프랑스', '🇫🇷'),
+        (11, '이탈리아', '🇮🇹');
 
 create table store
 (
@@ -51,10 +42,11 @@ create table store
 );
 comment on table STORE is '가게 기본 정보';
 
-insert into STORE (NAME, IMG, LAT, LNG, TEL, POST, ADDR1, ADDR2, CATEGORY, SIGNATURE_MENU, IS_CLOSED_STORE, CREATED_AT, UPDATED_AT)
-values  ('🍣 우미노미', 'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA3MTBfMzAw%2FMDAxNTk0MzQwNjMyOTUx.-M-qdSIMdEZmmer_xvd9ZQRQWvz4OVgqZaWf80b4fAEg.-Z-itc7EBgCsQEPkJN2NYa5lS41kcWi3r1fl7IzcST4g.JPEG.hogr1203%2FIMG_9331.JPG', 37.5303057771, 126.8992801172, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1, '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', 0, '2021-09-18 22:47:53.582105', '2021-09-18 22:47:53.582105'),
-        ('🍘 우미노미2', 'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA3MTBfMzAw%2FMDAxNTk0MzQwNjMyOTUx.-M-qdSIMdEZmmer_xvd9ZQRQWvz4OVgqZaWf80b4fAEg.-Z-itc7EBgCsQEPkJN2NYa5lS41kcWi3r1fl7IzcST4g.JPEG.hogr1203%2FIMG_9331.JPG', 37.529670, 126.898726, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1, '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', 0, '2021-09-18 22:47:53.582105', '2021-09-18 22:47:53.582105'),
-        ('🍜 자성당쫄면 영등포구청역점', 'https://cdn.imweb.me/thumbnail/20210827/8c64fc4754736.png', 37.5250497075, 126.8965910696, '02-6013-2685', '07259', '서울특별시 영등포구 당산동3가 314', ' ', 5, '온쫄면, 냉쫄면, 비빔쫄면, 갈비만두, 비빔만두, 유부초밥', 1, '2021-09-18 22:55:03.000000', '2021-09-18 22:55:11.000000');
+insert into PUBLIC.STORE (ID, NAME, IMG, LAT, LNG, TEL, POST, ADDR1, ADDR2, CATEGORY, SIGNATURE_MENU, IS_CLOSED_STORE, CREATED_AT, UPDATED_AT)
+values  (1, '우미노미', 'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA3MTBfMzAw%2FMDAxNTk0MzQwNjMyOTUx.-M-qdSIMdEZmmer_xvd9ZQRQWvz4OVgqZaWf80b4fAEg.-Z-itc7EBgCsQEPkJN2NYa5lS41kcWi3r1fl7IzcST4g.JPEG.hogr1203%2FIMG_9331.JPG', 37.5303057771, 126.8992801172, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '신우빌딩 1층 12호', 1, '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', 0, '2021-09-18 22:47:53.582105', '2021-09-18 22:47:53.582105'),
+        (2, '우미노미2', 'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA3MTBfMzAw%2FMDAxNTk0MzQwNjMyOTUx.-M-qdSIMdEZmmer_xvd9ZQRQWvz4OVgqZaWf80b4fAEg.-Z-itc7EBgCsQEPkJN2NYa5lS41kcWi3r1fl7IzcST4g.JPEG.hogr1203%2FIMG_9331.JPG', 37.5296700000, 126.8987260000, '070-4367-7116', '07216', '서울 영등포구 당산로 180', '', 1, '카이센동, 네기도로, 스키야키, 우니도로, 우니마구로, 사케동', 0, '2021-09-18 22:47:53.582105', '2021-09-18 22:47:53.582105'),
+        (3, '자성당쫄면 영등포구청역점', 'https://cdn.imweb.me/thumbnail/20210827/8c64fc4754736.png', 37.5250497075, 126.8965910696, '02-6013-2685', '07259', '서울특별시 영등포구 당산동3가 314', ' ', 5, '온쫄면, 냉쫄면, 비빔쫄면, 갈비만두, 비빔만두, 유부초밥', 1, '2021-09-18 22:55:03.000000', '2021-09-18 22:55:11.000000'),
+        (4, '우동가게', 'https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20180823_70%2F15350159965938dbzN_JPEG%2F5IJxtLKcJGnsKaTbvKOCGhj-.jpg', 37.5303987375, 126.8994005001, '02-2634-2999', '07216', '서울특별시 영등포구 당산2동 당산로 180', null, 1, '우동', 0, '2021-09-21 10:33:16.000000', '2021-09-21 10:33:12.000000');
 
 create table STORE_DETAIL
 (

@@ -3,7 +3,8 @@
 
 <mapper namespace="com.honbaber.api.mapper.StoreMapper">
 	<select id="showStore" parameterType="integer" resultType="hashmap">
-		select store.name,
+		select category.icon,
+			   store.name,
 		       store.img,
 		       store.lat,
 		       store.lng,
@@ -17,7 +18,8 @@
 		       sum(review.taste_rate) / count(review.id)
 		       )/3 as total_rate,
 		       count(review.id) as total_rate_cnt
-		from store join review on store.id = review.store_id
+		from store join category_store on store.category = category.id
+			 join review on store.id = review.store_id
 		where store.id = #{storeId}
 	</select>
 
