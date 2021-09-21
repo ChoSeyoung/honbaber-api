@@ -28,6 +28,7 @@ dependencies {
 	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.2.0'
 	implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 test {
