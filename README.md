@@ -32,6 +32,14 @@ https://github.com/visualkhh/honbaber
 | GET    | ${prefix}/report                           | 의견조회         | Not yet |
 | POST   | ${prefix}/report                           | 의견등록         | Not yet |
 
+# API 요청 리스트 (prefix := /admin/api/v1.0)
+| Method | Reqeust URL                                    | Description | Complete |
+|--------|------------------------------------------------|-------------|----------|
+| GET    | ${prefix}/categories                           | 카테고리 조회  | ok       |
+| POST   | ${prefix}/categories                           | 카테고리 등록  | ok       |
+| PUT    | ${prefix}/categories/${categoryId}             | 카테고리 수정  | ok       |
+| DELETE | ${prefix}/categories/${categoryId}             | 카테고리 삭제  | ok       |
+
 # API 작성시 주의사항
 1. DB SQL에서 사용하는 select, insert, update, delete 대신에 show, save, modify, remove 로 변경하여 메소드명 작성할 것.
 

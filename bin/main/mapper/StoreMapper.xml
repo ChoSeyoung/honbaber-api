@@ -131,10 +131,6 @@
 		where store_id = #{storeId}
 	</update>
 
-	
-
-	<insert id="registStores" parameterType="hashmap"></insert>
-
 	<select id="showMenus" parameterType="integer" resultType="hashmap">
 		select id, menu, price, is_signature
 		from menu
