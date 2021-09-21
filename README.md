@@ -13,24 +13,24 @@ https://github.com/visualkhh/honbaber
 # API 요청 리스트 (prefix := /api/v1.0)
 | Method | Reqeust URL                               | Description   | Complete |
 |--------|-------------------------------------------|---------------|----------|
-| GET    | ${prefix}/store                           | 주변 가게 조회    | ok      |
-| GET    | ${prefix}/store/${storeId}                | 가게조회         | ok      |
-| POST   | ${prefix}/store                           | 가게등록         | ok      |
-| PUT    | ${prefix}/store/${storeId}                | 가게수정         | ok      |
-| DELETE | ${prefix}/store/${storeId}                | 가게삭제         | ok      |
-| GET    | ${prefix}/store/detail/${storeId}         | 가게 상세정보 조회 | ok      |
-| POST   | ${prefix}/store/detail/${storeId}         | 가게 상세정보 등록 | Not yet |
-| PUT    | ${prefix}/store/detail/${storeId}         | 가게 상세정보 수정 | ok      |
-| GET    | ${prefix}/review/${id}                    | 리뷰조회         | ok      |
-| POST   | ${prefix}/review/${id}                    | 리뷰등록         | ok      |
-| PUT    | ${prefix}/review/${id}                    | 리뷰수정         | ok      |
-| DELETE | ${prefix}/review/${id}                    | 리뷰삭제         | ok      |
-| GET    | ${prefix}/store/${storeId}/menus          | 메뉴조회         | ok      |
-| POST   | ${prefix}/store/${storeId}/menus          | 메뉴등록         | ok      |
-| PUT    | ${prefix}/store/${storeId}/menus          | 메뉴수정         | ok      |
-| DELETE | ${prefix}/store/${storeId}/menus/${menuId}| 메뉴삭제         | ok      |
-| GET    | ${prefix}/report                          | 의견조회         | Not yet |
-| POST   | ${prefix}/report                          | 의견등록         | Not yet |
+| GET    | ${prefix}/stores                           | 주변 가게 조회    | ok      |
+| GET    | ${prefix}/stores/${storeId}                | 가게조회         | ok      |
+| POST   | ${prefix}/stores                           | 가게등록         | ok      |
+| PUT    | ${prefix}/stores/${storeId}                | 가게수정         | ok      |
+| DELETE | ${prefix}/stores/${storeId}                | 가게삭제         | ok      |
+| GET    | ${prefix}/stores/detail/${storeId}         | 가게 상세정보 조회 | ok      |
+| POST   | ${prefix}/stores/detail/${storeId}         | 가게 상세정보 등록 | Not yet |
+| PUT    | ${prefix}/stores/detail/${storeId}         | 가게 상세정보 수정 | ok      |
+| GET    | ${prefix}/review/${id}                     | 리뷰조회         | ok      |
+| POST   | ${prefix}/review/${id}                     | 리뷰등록         | ok      |
+| PUT    | ${prefix}/review/${id}                     | 리뷰수정         | ok      |
+| DELETE | ${prefix}/review/${id}                     | 리뷰삭제         | ok      |
+| GET    | ${prefix}/stores/${storeId}/menus          | 메뉴조회         | ok      |
+| POST   | ${prefix}/stores/${storeId}/menus          | 메뉴등록         | ok      |
+| PUT    | ${prefix}/stores/${storeId}/menus          | 메뉴수정         | ok      |
+| DELETE | ${prefix}/stores/${storeId}/menus/${menuId}| 메뉴삭제         | ok      |
+| GET    | ${prefix}/report                           | 의견조회         | Not yet |
+| POST   | ${prefix}/report                           | 의견등록         | Not yet |
 
 # API 작성시 주의사항
 1. DB SQL에서 사용하는 select, insert, update, delete 대신에 show, save, modify, remove 로 변경하여 메소드명 작성할 것.

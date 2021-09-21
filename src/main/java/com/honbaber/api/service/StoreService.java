@@ -13,34 +13,33 @@ public class StoreService implements StoreMapper{
 	@Autowired
 	private StoreMapper mapper;
 
-	public Map<String, Object> showStore(Integer storeId) {
-		return mapper.showStore(storeId);
+	public List<Map<String, Object>> showNearStores(Map<String, Object> params) {
+		return mapper.showNearStores(params);
 	}
 
-	public Integer saveStore(Map<String, Object> params) {
-		return mapper.saveStore(params);
-	}
-	
-	public Integer modifyStore(Map<String, Object> params) {
-		return mapper.modifyStore(params);
-	}
-	
-	public Integer removeStore(Integer id) {
-		return mapper.removeStore(id);
-	}
-	
-	public List<Map<String, Object>> showStoreDetail(Integer storeId) {
-		return mapper.showStoreDetail(storeId);
-	}
-	
-	public Integer modifyStoreDetail(Map<String, Object> params) {
-		return mapper.modifyStoreDetail(params);
-	}
-	
-	public List<Map<String, Object>> showStores(Map<String, Object> params) {
-		return mapper.showStores(params);
+	public Map<String, Object> showStores(Integer storeId) {
+		return mapper.showStores(storeId);
 	}
 
+	public Integer saveStores(Map<String, Object> params) {
+		return mapper.saveStores(params);
+	}
+	
+	public Integer modifyStores(Map<String, Object> params) {
+		return mapper.modifyStores(params);
+	}
+	
+	public Integer removeStores(Integer id) {
+		return mapper.removeStores(id);
+	}
+	
+	public List<Map<String, Object>> showStoresDetail(Integer storeId) {
+		return mapper.showStoresDetail(storeId);
+	}
+	
+	public Integer modifyStoresDetail(Map<String, Object> params) {
+		return mapper.modifyStoresDetail(params);
+	}
 
 	public List<Map<String, Object>> showMenus(Integer storeId) {
 		return mapper.showMenus(storeId);

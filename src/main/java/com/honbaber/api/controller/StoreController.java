@@ -28,20 +28,23 @@ public class StoreController {
 
 	@GetMapping("/stores")
 	@ApiOperation("다중 가게 정보 조회(주변 가게 정보 조회)")
-	public List<Map<String, Object>> showStores(@RequestParam Map<String, Object> params) {
-		return storeService.showStores(params);
+	public List<Map<String, Object>> showNearStores(
+			@RequestParam Map<String, Object> params) {
+		
+		return storeService.showNearStores(params);
 	}
 	
-	@GetMapping("/store/{store_id}")
+	@GetMapping("/stores/{storeId}")
 	@ApiOperation("단일 가게 정보 조회")
-	public Map<String, Object> showStore(
-			@ApiParam(value = "store_id", name = "가게 ID") @PathVariable("store_id") Integer storeId) {
-		return storeService.showStore(storeId);
+	public Map<String, Object> showStores(
+			@ApiParam(value = "storeId", name = "가게 ID") @PathVariable("storeId") Integer storeId) {
+		
+		return storeService.showStores(storeId);
 	}
 
-	@PostMapping("/store")
+	@PostMapping("/stores")
 	@ApiOperation("가게 정보 등록")
-	public void saveStore(
+	public void saveStores(
 			@ApiParam(value = "name", name = "가게명") @RequestParam("name") String name,
 			@ApiParam(value = "img", name = "가게 이미지 URL") @RequestParam("img") String img,
 			@ApiParam(value = "lat", name = "위도") @RequestParam("lat") double lat,
@@ -65,16 +68,16 @@ public class StoreController {
 		params.put("addr1", addr1);
 		params.put("addr2", addr2);
 		params.put("category", category);
-		params.put("signature_menu", signatureMenu);
+		params.put("signatureMenu", signatureMenu);
 		params.put("isClosedStore", isClosedStore);
 		
-		storeService.saveStore(params);
+		storeService.saveStores(params);
 	}
 
-	@PutMapping("/store/{store_id}")
+	@PutMapping("/stores/{storeId}")
 	@ApiOperation("가게 정보 수정")
-	public void modifyStore(
-			@ApiParam(value = "store_id", name = "가게 ID") @PathVariable("store_id") Integer storeId, 
+	public void modifyStores(
+			@ApiParam(value = "storeId", name = "가게 ID") @PathVariable("storeId") Integer storeId, 
 			@ApiParam(value = "name", name = "가게명") @RequestParam("name") String name,
 			@ApiParam(value = "img", name = "가게 이미지 URL") @RequestParam("img") String img,
 			@ApiParam(value = "lat", name = "위도") @RequestParam("lat") double lat,
@@ -98,57 +101,66 @@ public class StoreController {
 		params.put("addr1", addr1);
 		params.put("addr2", addr2);
 		params.put("category", category);
-		params.put("signature_menu", signatureMenu);
+		params.put("signatureMenu", signatureMenu);
 		
-		storeService.saveStore(params);
+		storeService.saveStores(params);
 	}
 
-	@DeleteMapping("/store/{store_id}")
+	@DeleteMapping("/stores/{storeId}")
 	@ApiOperation("가게 정보 삭제")
-	public void removeStore(
-			@ApiParam(value="store_id", name="가게 ID") @PathVariable("store_id") Integer storeId) {
+	public void removeStores(
+			@ApiParam(value="storeId", name="가게 ID") @PathVariable("storeId") Integer storeId) {
 		
-		storeService.removeStore(storeId);
+		storeService.removeStores(storeId);
 	}
 	
-	@GetMapping("/store/detail/{store_id}")
+	@GetMapping("/stores/detail/{storeId}")
 	@ApiOperation("가게 상세 정보 조회")
-	public List<Map<String, Object>> showStoreDetail(
-			@ApiParam(value="store_id", name="가게 ID") @PathVariable("store_id") Integer storeId) {
+	public List<Map<String, Object>> showStoresDetail(
+			@ApiParam(value="storeId", name="가게 ID") @PathVariable("storeId") Integer storeId) {
 		
-		return storeService.showStoreDetail(storeId);
+		return storeService.showStoresDetail(storeId);
 	}
 
-	@PutMapping("/store/detail/{storeId}")
-	public void modifyStoreDetail(@PathVariable("storeId") Integer storeId, @RequestParam Map<String, Object> params) {
+	@PutMapping("/stores/detail/{storeId}")
+	public void modifyStoresDetail(
+			@ApiParam(value = "storeId", name = "가게 ID") @PathVariable("storeId") Integer storeId, 
+			@RequestParam Map<String, Object> params) {
+		
 		params.put("storeId", storeId);
-		storeService.modifyStoreDetail(params);
+		storeService.modifyStoresDetail(params);
 	}
 
-	@GetMapping("/store/{store_id}/menus")
+	@GetMapping("/stores/{storeId}/menus")
 	@ApiOperation("가게 메뉴 정보 조회")
 	public List<Map<String, Object>> showMenus(
-			@ApiParam(value="store_id", name="가게 ID") @PathVariable("store_id") Integer storeId) {
+			@ApiParam(value="storeId", name="가게 ID") @PathVariable("storeId") Integer storeId) {
 		
 		return storeService.showMenus(storeId);
 	}
 
-	@PostMapping("/store/{storeId}/menus")
-	public void saveMenus(@PathVariable("storeId") Integer storeId, @RequestParam Map<String, Object> params) {
+	@PostMapping("/stores/{storeId}/menus")
+	public void saveMenus(
+			@ApiParam(value = "storeId", name = "가게 ID") @PathVariable("storeId") Integer storeId, 
+			@RequestParam Map<String, Object> params) {
+		
 		params.put("storeId", storeId);
 		storeService.saveMenus(params);
 	}
 
-	@PutMapping("/store/{storeId}/menus")
-	public void modifyMenus(@PathVariable("storeId") Integer storeId, @RequestParam Map<String, Object> params) {
+	@PutMapping("/stores/{storeId}/menus")
+	public void modifyMenus(
+			@ApiParam(value = "storeId", name = "가게 ID") @PathVariable("storeId") Integer storeId, 
+			@RequestParam Map<String, Object> params) {
+		
 		params.put("storeId", storeId);
 		storeService.modifyMenus(params);
 	}
 	
-	@DeleteMapping("/store/{store_id}/menus/{menu_id}")
+	@DeleteMapping("/stores/{storeId}/menus/{menuId}")
 	@ApiOperation("가게 메뉴 정보 삭제")
 	public void removeMenus(
-			@ApiParam(value="menu_id", name="가게 ID") @PathVariable("menu_id") Integer menuId) {
+			@ApiParam(value="menuId", name="가게 ID") @PathVariable("menuId") Integer menuId) {
 		
 		storeService.removeMenus(menuId);
 	}

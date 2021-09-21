@@ -9,20 +9,20 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface StoreMapper {
-	Map<String, Object> showStore(Integer storeId);
+	List<Map<String, Object>> showNearStores(Map<String, Object> params);
+	
+	Map<String, Object> showStores(Integer storeId);
 
-	Integer saveStore(Map<String, Object> params);
+	Integer saveStores(Map<String, Object> params);
 	
-	Integer modifyStore(Map<String, Object> params);
+	Integer modifyStores(Map<String, Object> params);
 	
-	Integer removeStore(Integer id);
+	Integer removeStores(Integer id);
 	
-	List<Map<String, Object>> showStoreDetail(Integer storeId);
+	List<Map<String, Object>> showStoresDetail(Integer storeId);
 
-	Integer modifyStoreDetail(Map<String, Object> params);
+	Integer modifyStoresDetail(Map<String, Object> params);
 	
-	List<Map<String, Object>> showStores(Map<String, Object> params);
-
 	List<Map<String, Object>> showMenus(Integer id);
 
 	Integer modifyMenus(Map<String, Object> params);

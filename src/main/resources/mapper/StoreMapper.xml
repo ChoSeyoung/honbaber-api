@@ -2,97 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.honbaber.api.mapper.StoreMapper">
-	<select id="showStore" parameterType="integer" resultType="hashmap">
-		select category.icon,
-			   store.name,
-		       store.img,
-		       store.lat,
-		       store.lng,
-		       store.tel,
-		       store.post,
-		       store.addr1,
-		       store.addr2,
-		       (
-		       sum(review.sense_rate) / count(review.id) +
-		       sum(review.time_rate) / count(review.id) +
-		       sum(review.taste_rate) / count(review.id)
-		       )/3 as total_rate,
-		       count(review.id) as total_rate_cnt
-		from store join category_store on store.category = category.id
-			 join review on store.id = review.store_id
-		where store.id = #{storeId}
-	</select>
-
-	<insert id="saveStore" parameterType="hashmap">
-		insert into store (name, img, lat, lng, tel, post, addr1, addr2, category, signature_menu,
-			is_closed_store, created_at, updated_at)
-		values (#{name}, #{img}, #{lat}, #{lng}, #{tel}, #{post}, #{addr1}, #{addr2}, #{category}, #{signatureMenu},
-			#{isClosedStore}, now(), now())
-	</insert>
-
-	<update id="modifyStore" parameterType="hashmap">
-		update store
-		set name = #{name},
-			img = #{img},
-			lat = #{lat},
-			lng = #{lng},
-			tel = #{tel},
-			post = #{post},
-			addr1 = #{addr1},
-			addr2 = #{addr2},
-			category = #{category},
-			signature_menu = #{signature_menu},
-			updated_at = now()
-		where id = #{storeId}
-	</update>
-
-	<update id="removeStore" parameterType="integer">
-		update store set is_closed_store = 1 where id = #{storeId}
-	</update>
-
-	<select id="showStoreDetail" parameterType="integer" resultType="hashmap">
-		select store.name,
-		       store.img,
-		       store.tel,
-		       store.post,
-		       store.addr1,
-		       store.addr2,
-		       (
-		       sum(review.sense_rate) / count(review.id) +
-		       sum(review.time_rate) / count(review.id) +
-		       sum(review.taste_rate) / count(review.id)
-		       )/3 as total_rate,
-		       sum(review.sense_rate) / count(review.id) as sense_rate,
-		       sum(review.time_rate) / count(review.id) as time_rate,
-		       sum(review.taste_rate) / count(review.id) as taste_rate,
-		       detail.website,
-		       detail.open_day,
-		       detail.open_at,
-		       detail.off_day,
-		       detail.personal_table_cnt,
-		       detail.is_self_side_dish,
-		       detail.is_self_water,
-		       detail.is_self_payment
-		from store join store_detail as detail on store.id = detail.store_id
-			join review on store.id = review.store_id
-		where store.id = #{storeId}
-	</select>
-
-	<update id="modifyStoreDetail" parameterType="hashmap">
-		update store_detail
-		set open_day = #{openDay},
-			open_at = #{openAt},
-			off_day = #{offDay},
-			website = #{website},
-			personal_table_cnt = #{personalTableCnt},
-			is_self_side_dish = #{isSelfSideDish},
-			is_self_water = #{isSelfWater},
-			is_self_payment = #{isSelfPayment},
-			updated_at = now()
-		where store_id = #{storeId}
-	</update>
-
-	<select id="showStores" parameterType="hashmap" resultType="hashmap">
+	<select id="showNearStores" parameterType="hashmap" resultType="hashmap">
 		select store.id,
 		       store.name,
 		       store.img,
@@ -126,8 +36,100 @@
 		having total_rate >= #{rate}
 		]]>
 	</select>
+	
+	<select id="showStores" parameterType="integer" resultType="hashmap">
+		select category.icon,
+			   store.name,
+		       store.img,
+		       store.lat,
+		       store.lng,
+		       store.tel,
+		       store.post,
+		       store.addr1,
+		       store.addr2,
+		       (
+		       sum(review.sense_rate) / count(review.id) +
+		       sum(review.time_rate) / count(review.id) +
+		       sum(review.taste_rate) / count(review.id)
+		       )/3 as total_rate,
+		       count(review.id) as total_rate_cnt
+		from store join category_store on store.category = category.id
+			 join review on store.id = review.store_id
+		where store.id = #{storeId}
+	</select>
 
-	<insert id="registStore" parameterType="hashmap"></insert>
+	<insert id="saveStores" parameterType="hashmap">
+		insert into store (name, img, lat, lng, tel, post, addr1, addr2, category, signature_menu,
+			is_closed_store, created_at, updated_at)
+		values (#{name}, #{img}, #{lat}, #{lng}, #{tel}, #{post}, #{addr1}, #{addr2}, #{category}, #{signatureMenu},
+			#{isClosedStore}, now(), now())
+	</insert>
+
+	<update id="modifyStores" parameterType="hashmap">
+		update store
+		set name = #{name},
+			img = #{img},
+			lat = #{lat},
+			lng = #{lng},
+			tel = #{tel},
+			post = #{post},
+			addr1 = #{addr1},
+			addr2 = #{addr2},
+			category = #{category},
+			signature_menu = #{signature_menu},
+			updated_at = now()
+		where id = #{storeId}
+	</update>
+
+	<update id="removeStores" parameterType="integer">
+		update store set is_closed_store = 1 where id = #{storeId}
+	</update>
+
+	<select id="showStoresDetail" parameterType="integer" resultType="hashmap">
+		select store.name,
+		       store.img,
+		       store.tel,
+		       store.post,
+		       store.addr1,
+		       store.addr2,
+		       (
+		       sum(review.sense_rate) / count(review.id) +
+		       sum(review.time_rate) / count(review.id) +
+		       sum(review.taste_rate) / count(review.id)
+		       )/3 as total_rate,
+		       sum(review.sense_rate) / count(review.id) as sense_rate,
+		       sum(review.time_rate) / count(review.id) as time_rate,
+		       sum(review.taste_rate) / count(review.id) as taste_rate,
+		       detail.website,
+		       detail.open_day,
+		       detail.open_at,
+		       detail.off_day,
+		       detail.personal_table_cnt,
+		       detail.is_self_side_dish,
+		       detail.is_self_water,
+		       detail.is_self_payment
+		from store join store_detail as detail on store.id = detail.store_id
+			join review on store.id = review.store_id
+		where store.id = #{storeId}
+	</select>
+
+	<update id="modifyStoresDetail" parameterType="hashmap">
+		update store_detail
+		set open_day = #{openDay},
+			open_at = #{openAt},
+			off_day = #{offDay},
+			website = #{website},
+			personal_table_cnt = #{personalTableCnt},
+			is_self_side_dish = #{isSelfSideDish},
+			is_self_water = #{isSelfWater},
+			is_self_payment = #{isSelfPayment},
+			updated_at = now()
+		where store_id = #{storeId}
+	</update>
+
+	
+
+	<insert id="registStores" parameterType="hashmap"></insert>
 
 	<select id="showMenus" parameterType="integer" resultType="hashmap">
 		select id, menu, price, is_signature
