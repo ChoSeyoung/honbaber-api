@@ -25,10 +25,10 @@ https://github.com/visualkhh/honbaber
 | POST   | ${prefix}/review/${id}                    | 리뷰등록         | ok      |
 | PUT    | ${prefix}/review/${id}                    | 리뷰수정         | ok      |
 | DELETE | ${prefix}/review/${id}                    | 리뷰삭제         | ok      |
-| GET    | ${prefix}/store/${storeId}/menu           | 메뉴조회         | ok      |
-| POST   | ${prefix}/store/${storeId}/menu           | 메뉴등록         | ok      |
-| PUT    | ${prefix}/store/${storeId}/menu           | 메뉴수정         | ok      |
-| DELETE | ${prefix}/store/${storeId}/menu/${menuId} | 메뉴삭제         | ok      |
+| GET    | ${prefix}/store/${storeId}/menus          | 메뉴조회         | ok      |
+| POST   | ${prefix}/store/${storeId}/menus          | 메뉴등록         | ok      |
+| PUT    | ${prefix}/store/${storeId}/menus          | 메뉴수정         | ok      |
+| DELETE | ${prefix}/store/${storeId}/menus/${menuId}| 메뉴삭제         | ok      |
 | GET    | ${prefix}/report                          | 의견조회         | Not yet |
 | POST   | ${prefix}/report                          | 의견등록         | Not yet |
 
@@ -41,5 +41,5 @@ https://github.com/visualkhh/honbaber
 | 입력 | insert[메소드명] | save[메소드명]   |
 | 수정 | update[메소드명] | modify[메소드명] |
 | 삭제 | delete[메소드명] | remove[메소드명] |
-2. 모든 파라미터를 전달받을 땐 스네이크 케이스를 적용하고 내부 로직에선 카멜케이스로 전환하여 사용할 것.
+2. 모든 파라미터와 메소드안에서는 카멜케이스를 적용한다.
 3. 모든 API는 @ApiOperation과 @ApiParam을 통하여 Swagger 적용할 수 있도록 한다.
