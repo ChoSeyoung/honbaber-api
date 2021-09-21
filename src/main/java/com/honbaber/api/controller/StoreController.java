@@ -116,7 +116,7 @@ public class StoreController {
 	
 	@GetMapping("/stores/{storeId}/detail")
 	@ApiOperation("가게 상세 정보 조회")
-	public List<Map<String, Object>> showStoresDetail(
+	public Map<String, Object> showStoresDetail(
 			@ApiParam(value="storeId", name="가게 ID") @PathVariable("storeId") Integer storeId) {
 		
 		return storeService.showStoresDetail(storeId);

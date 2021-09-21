@@ -33,7 +33,7 @@ public class StoreService implements StoreMapper{
 		return mapper.removeStores(id);
 	}
 	
-	public List<Map<String, Object>> showStoresDetail(Integer storeId) {
+	public Map<String, Object> showStoresDetail(Integer storeId) {
 		return mapper.showStoresDetail(storeId);
 	}
 	

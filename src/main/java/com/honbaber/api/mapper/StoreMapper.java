@@ -19,7 +19,7 @@ public interface StoreMapper {
 	
 	Integer removeStores(Integer id);
 	
-	List<Map<String, Object>> showStoresDetail(Integer storeId);
+	Map<String, Object> showStoresDetail(Integer storeId);
 
 	Integer modifyStoresDetail(Map<String, Object> params);
 	
