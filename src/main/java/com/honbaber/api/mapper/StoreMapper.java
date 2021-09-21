@@ -23,11 +23,11 @@ public interface StoreMapper {
 	
 	List<Map<String, Object>> showStores(Map<String, Object> params);
 
-	List<Map<String, Object>> showMenu(Integer id);
+	List<Map<String, Object>> showMenus(Integer id);
 
-	Integer modifyMenu(Map<String, Object> params);
+	Integer modifyMenus(Map<String, Object> params);
 
-	Integer saveMenu(Map<String, Object> params);
+	Integer saveMenus(Map<String, Object> params);
 
-	Integer removeMenu(Integer menuId);
+	Integer removeMenus(Integer menuId);
 }

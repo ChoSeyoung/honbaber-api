@@ -129,14 +129,14 @@
 
 	<insert id="registStore" parameterType="hashmap"></insert>
 
-	<select id="showMenu" parameterType="integer" resultType="hashmap">
+	<select id="showMenus" parameterType="integer" resultType="hashmap">
 		select id, menu, price, is_signature
 		from menu
 		where store_id = #{storeId}
 		order by is_signature desc, menu asc
 	</select>
 
-	<update id="modifyMenu" parameterType="hashmap">
+	<update id="modifyMenus" parameterType="hashmap">
 		update menu
 		set menu = #{menu},
 			price = #{price},
@@ -146,12 +146,12 @@
 		and store_id = #{storeId}
 	</update>
 
-	<insert id="saveMenu" parameterType="hashmap">
+	<insert id="saveMenus" parameterType="hashmap">
 		insert into menu (store_id, menu, price, is_signature, created_at, updated_at)
 		values(#{storeId}, #{menu}, #{price}, #{isSignature}, now(), now())
 	</insert>
 
-	<delete id="removeMenu" parameterType="integer">
+	<delete id="removeMenus" parameterType="integer">
 		delete from menu where id = #{menuId}
 	</delete>
 </mapper>

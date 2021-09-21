@@ -125,31 +125,31 @@ public class StoreController {
 		storeService.modifyStoreDetail(params);
 	}
 
-	@GetMapping("/store/{store_id}/menu")
+	@GetMapping("/store/{store_id}/menus")
 	@ApiOperation("가게 메뉴 정보 조회")
-	public List<Map<String, Object>> showMenu(
+	public List<Map<String, Object>> showMenus(
 			@ApiParam(value="store_id", name="가게 ID") @PathVariable("store_id") Integer storeId) {
 		
-		return storeService.showMenu(storeId);
+		return storeService.showMenus(storeId);
 	}
 
-	@PostMapping("/store/{storeId}/menu")
-	public void saveMenu(@PathVariable("storeId") Integer storeId, @RequestParam Map<String, Object> params) {
+	@PostMapping("/store/{storeId}/menus")
+	public void saveMenus(@PathVariable("storeId") Integer storeId, @RequestParam Map<String, Object> params) {
 		params.put("storeId", storeId);
-		storeService.saveMenu(params);
+		storeService.saveMenus(params);
 	}
 
-	@PutMapping("/store/{storeId}/menu")
-	public void modifyMenu(@PathVariable("storeId") Integer storeId, @RequestParam Map<String, Object> params) {
+	@PutMapping("/store/{storeId}/menus")
+	public void modifyMenus(@PathVariable("storeId") Integer storeId, @RequestParam Map<String, Object> params) {
 		params.put("storeId", storeId);
-		storeService.modifyMenu(params);
+		storeService.modifyMenus(params);
 	}
 	
-	@DeleteMapping("/store/{store_id}/menu/{menu_id}")
+	@DeleteMapping("/store/{store_id}/menus/{menu_id}")
 	@ApiOperation("가게 메뉴 정보 삭제")
-	public void removeMenu(
+	public void removeMenus(
 			@ApiParam(value="menu_id", name="가게 ID") @PathVariable("menu_id") Integer menuId) {
 		
-		storeService.removeMenu(menuId);
+		storeService.removeMenus(menuId);
 	}
 }

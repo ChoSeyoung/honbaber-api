@@ -42,19 +42,19 @@ public class StoreService implements StoreMapper{
 	}
 
 
-	public List<Map<String, Object>> showMenu(Integer storeId) {
-		return mapper.showMenu(storeId);
+	public List<Map<String, Object>> showMenus(Integer storeId) {
+		return mapper.showMenus(storeId);
 	}
 
-	public Integer modifyMenu(Map<String, Object> params) {
-		return mapper.modifyMenu(params);
+	public Integer modifyMenus(Map<String, Object> params) {
+		return mapper.modifyMenus(params);
 	}
 
-	public Integer saveMenu(Map<String, Object> params) {
-		return mapper.saveMenu(params);
+	public Integer saveMenus(Map<String, Object> params) {
+		return mapper.saveMenus(params);
 	}
 
-	public Integer removeMenu(Integer menuId) {
-		return mapper.removeMenu(menuId);
+	public Integer removeMenus(Integer menuId) {
+		return mapper.removeMenus(menuId);
 	}
 }
