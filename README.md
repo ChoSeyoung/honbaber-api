@@ -29,6 +29,7 @@ https://github.com/visualkhh/honbaber
 | POST   | ${prefix}/stores/${storeId}/menus          | 메뉴등록         | ok      |
 | PUT    | ${prefix}/stores/${storeId}/menus          | 메뉴수정         | ok      |
 | DELETE | ${prefix}/stores/${storeId}/menus/${menuId}| 메뉴삭제         | ok      |
+| GET    | ${prefix}/stores/${storeId}/reviews        | 해당 가게 리뷰 조회| ok      |
 | GET    | ${prefix}/report                           | 의견조회         | Not yet |
 | POST   | ${prefix}/report                           | 의견등록         | Not yet |
 

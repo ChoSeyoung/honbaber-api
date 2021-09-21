@@ -109,7 +109,7 @@ public class StoreController {
 	@DeleteMapping("/stores/{storeId}")
 	@ApiOperation("가게 정보 삭제")
 	public void removeStores(
-			@ApiParam(value="storeId", name="가게 ID") @PathVariable("storeId") Integer storeId) {
+			@ApiParam(value = "storeId", name = "가게 ID") @PathVariable("storeId") Integer storeId) {
 		
 		storeService.removeStores(storeId);
 	}
@@ -117,7 +117,7 @@ public class StoreController {
 	@GetMapping("/stores/{storeId}/detail")
 	@ApiOperation("가게 상세 정보 조회")
 	public Map<String, Object> showStoresDetail(
-			@ApiParam(value="storeId", name="가게 ID") @PathVariable("storeId") Integer storeId) {
+			@ApiParam(value = "storeId", name = "가게 ID") @PathVariable("storeId") Integer storeId) {
 		
 		return storeService.showStoresDetail(storeId);
 	}
@@ -134,7 +134,7 @@ public class StoreController {
 	@GetMapping("/stores/{storeId}/menus")
 	@ApiOperation("가게 메뉴 정보 조회")
 	public List<Map<String, Object>> showMenus(
-			@ApiParam(value="storeId", name="가게 ID") @PathVariable("storeId") Integer storeId) {
+			@ApiParam(value = "storeId", name = "가게 ID") @PathVariable("storeId") Integer storeId) {
 		
 		return storeService.showMenus(storeId);
 	}
@@ -160,8 +160,16 @@ public class StoreController {
 	@DeleteMapping("/stores/{storeId}/menus/{menuId}")
 	@ApiOperation("가게 메뉴 정보 삭제")
 	public void removeMenus(
-			@ApiParam(value="menuId", name="가게 ID") @PathVariable("menuId") Integer menuId) {
+			@ApiParam(value = "menuId", name = "가게 ID") @PathVariable("menuId") Integer menuId) {
 		
 		storeService.removeMenus(menuId);
+	}
+	
+	@GetMapping("/stores/{storeId}/reivews")
+	@ApiOperation("가게 리뷰 조회")
+	public List<Map<String, Object>> showReviews(
+			@ApiParam(value = "storeId", name = "가게 ID") @PathVariable("storeId") Integer storeId) {
+		
+		return storeService.showReviews(storeId);
 	}
 }

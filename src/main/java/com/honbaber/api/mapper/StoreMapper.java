@@ -30,4 +30,6 @@ public interface StoreMapper {
 	Integer saveMenus(Map<String, Object> params);
 
 	Integer removeMenus(Integer menuId);
+	
+	List<Map<String, Object>> showReviews(Integer storeId);
 }

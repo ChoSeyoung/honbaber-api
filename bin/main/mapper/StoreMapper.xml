@@ -156,4 +156,11 @@
 	<delete id="removeMenus" parameterType="integer">
 		delete from menu where id = #{menuId}
 	</delete>
+	
+	<select id="showReviews" parameterType="integer" resultType="hashmap">
+		select reviewer, sense_rate, time_rate, taste_rate, review, created_at, updated_at
+		from review
+		where store_id = #{storeId}
+		and is_delete = 0
+	</select>
 </mapper>
