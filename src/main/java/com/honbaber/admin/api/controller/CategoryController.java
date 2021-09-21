@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/admin/api/${API_VERSION}")
 public class CategoryController {
 	
 	@Autowired

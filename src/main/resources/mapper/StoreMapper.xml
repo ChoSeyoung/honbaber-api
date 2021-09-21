@@ -3,7 +3,8 @@
 
 <mapper namespace="com.honbaber.api.mapper.StoreMapper">
 	<select id="showNearStores" parameterType="hashmap" resultType="hashmap">
-		select store.id,
+		select category.icon,
+		       store.id,
 		       store.name,
 		       store.img,
 		       store.lat,
@@ -20,7 +21,9 @@
 		       count(review.id) as total_rate_cnt,
 			   6371 * acos (cos ( radians(#{lat}) )* cos( radians( store.lat ) )* cos( radians( store.lng ) - radians(#{lng}) )
 			   + sin ( radians(#{lat}) )* sin( radians( store.lat ) )) as radius
-		from store join review on store.id = review.store_id
+		from store
+		     join category_store as category on store.category = category.id
+			 join review on store.id = review.store_id
 		<![CDATA[
 		where (
 			6371 * acos (
@@ -53,7 +56,8 @@
 		       sum(review.taste_rate) / count(review.id)
 		       )/3 as total_rate,
 		       count(review.id) as total_rate_cnt
-		from store join category_store on store.category = category.id
+		from store 
+			 join category_store as category on store.category = category.id
 			 join review on store.id = review.store_id
 		where store.id = #{storeId}
 	</select>
