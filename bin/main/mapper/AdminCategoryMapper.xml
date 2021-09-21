@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.honbaber.admin.api.mapper">
+	<select id="showCategories" parameterType="hashmap" resultType="hashmap">
+		select id, category, icon from category_store
+	</select>
+	<insert id="saveCategories" parameterType="hashmap">
+		insert into category, icon values (#{category}, #{icon})
+	</insert>
+	<update id="modifyCategories">
+		update category set category = #{category}, icon = #{icon} where id = #{categoryId}
+	</update>
+	<delete id="removeCategories">
+		delete from category where id = #{categoryId}
+	</delete>
+</mapper>

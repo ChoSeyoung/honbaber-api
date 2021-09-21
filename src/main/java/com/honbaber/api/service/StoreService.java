@@ -11,7 +11,7 @@ import com.honbaber.api.mapper.StoreMapper;
 @Service
 public class StoreService implements StoreMapper{
 	@Autowired
-	public StoreMapper mapper;
+	private StoreMapper mapper;
 
 	public Map<String, Object> showStore(Integer storeId) {
 		return mapper.showStore(storeId);

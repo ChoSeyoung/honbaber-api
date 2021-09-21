@@ -11,7 +11,7 @@ import com.honbaber.api.mapper.ReviewMapper;
 @Service
 public class ReviewService implements ReviewMapper {
 	@Autowired
-	public ReviewMapper mapper;
+	private ReviewMapper mapper;
 
 	public List<Map<String, Object>> showReview(Integer reviewId) {
 		return mapper.showReview(reviewId);
