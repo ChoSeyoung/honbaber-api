@@ -1,15 +1,15 @@
 # honbaber-api
 혼밥러에 오신걸환영합니다. 도심속 정글에 외로고 배고픈 당신이여 사냥을 시작하시죠.
-<br/><br/>
+
 # API 명세 (Swagger)
 http://localhost:8080/swagger-ui/index.html
-<br/><br/>
+
 # 혼밥러 Frond-End
 https://github.com/visualkhh/honbaber
-<br/><br/>
+
 # 데이터베이스 시딩
 서비스 동작시 database/init.sql 파일로 시딩 합니다.
-<br/><br/>
+
 # API 요청 리스트 (prefix := /api/v1.0)
 | Method | Reqeust URL                               | Description   | Complete |
 |--------|-------------------------------------------|---------------|----------|
